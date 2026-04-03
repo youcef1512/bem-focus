@@ -1,6 +1,34 @@
 # Mission Log
 
 ## Latest Run
+- Timestamp: 2026-04-03 09:10:00 -07:00
+- Mission: NEVER-MISS-A-JOB-V1
+- Status: Complete
+- Note: Created a new standalone app in `C:\Users\toumi\Documents\New project 2\never-miss-a-job` so the home-service automation work stays isolated from the existing BEM product.
+- Note: Implemented a React + Vite operator UI with three surfaces: contractor landing page, live lead-loss audit calculator, and client dashboard.
+- Note: Implemented an Express API with typed interfaces for telephony ingest, SMS reply ingest, estimate-form ingest, booking creation, owner-alert acknowledgement, and dashboard reporting.
+- Note: Added a Postgres-ready schema and repository plus an in-memory seeded demo runtime so the product runs locally without external credentials while staying ready for real Twilio and Google Calendar wiring.
+- Note: Added automated coverage for missed-call recovery, abandoned-call dedupe, consent-safe form handling, STOP opt-out, human handoff routing, booking creation, and audit math.
+- Note: Verification passed locally in `never-miss-a-job` with `npm run typecheck`, `npm test`, and `npm run build`.
+
+## Previous Run
+
+## Latest Run
+- Timestamp: 2026-04-03 09:08:00 -07:00
+- Mission: BEM-FOCUS-FULL-EXAM-RECONSTRUCTION-AND-PROGRAMME-DEPTH
+- Status: Complete with archived-source gaps logged
+- Note: Reworked the `فتح التمرين التفاعلي` flow so the OCR-backed interactive reconstruction appears before the hosted PDF instead of after it.
+- Note: Rebuilt `scripts/generate_exam_dossiers.py` to generate richer exam dossiers with full page transcripts, section maps, skill tags, answer frames, pitfalls, and self-check scaffolds per extracted prompt.
+- Note: Regenerated `src/data/examDossiers.generated.json`; prompt coverage increased materially for hosted subjects, including math, physics, science, Arabic, French, English, history/geography, and civics.
+- Note: Added a new `ExamPromptWorkbench` UI with question map, section filter, page transcript viewer, linked topics, answer-template reveal, pitfalls, and staged recall/start/check interactions.
+- Note: Reworked summaries so the pages and offline HTML exports can display full-programme blocks, study sequence, common traps, and quick checks instead of only short recap bullets.
+- Note: Replaced `src/content/summaries.ts` with deeper per-subject programme coverage for math, Arabic, French, English, history/geography, physics, science, Islamic studies, and civics.
+- Note: Regenerated offline outputs in `public/downloads` so the new programme-depth summaries are available as printable/downloadable HTML and ZIP content on Windows.
+- Note: Verification passed locally with `tsc --noEmit`, `vitest run`, `playwright test`, and `npm run build`.
+- Note: Captured updated UI screenshots at `C:\Users\toumi\Documents\New project 2\output\screenshots\exam-math-2025-after-order.png` and `C:\Users\toumi\Documents\New project 2\output\screenshots\summaries.png`.
+- Note: Remaining archived-source gap is explicit: `src/data/examDossiers.generated.json` currently contains 79 dossiers because 11 upstream PDF assets are still unavailable for OCR hydration locally (`arabic-2025` and `islamic-2016` through `islamic-2025` in the manifest).
+
+## Latest Run
 - Timestamp: 2026-04-03 07:24:05 -07:00
 - Mission: BEM-FOCUS-DEEP-CURRICULUM-AND-HOSTED-EXAMS
 - Status: Complete

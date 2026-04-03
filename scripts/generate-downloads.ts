@@ -49,7 +49,7 @@ function lessonHtml(lessonId: string) {
         <div class="pill">${lesson.finishLine}</div>
       </section>
       <section class="sheet">
-        <h2>قبل ما تبداي</h2>
+        <h2>قبل ما تبدأي</h2>
         <p>${lesson.phoneAwayRitual}</p>
         <p>${lesson.recallWarmup}</p>
       </section>
@@ -84,6 +84,8 @@ function lessonHtml(lessonId: string) {
 function summaryHtml(summaryId: string) {
   const summary = summarySheets.find((entry) => entry.id === summaryId)!;
   const subject = subjectById[summary.subjectId];
+  const program = summary.programSections ?? subject.roadmap;
+
   return documentTemplate(
     summary.title,
     `
@@ -96,6 +98,25 @@ function summaryHtml(summaryId: string) {
         <h2>الخلاصة</h2>
         <ul>${summary.recap.map((item) => `<li>${item}</li>`).join("")}</ul>
       </section>
+      <section class="sheet">
+        <h2>البرنامج الكامل في المادة</h2>
+        ${program
+          .map(
+            (block) => `
+              <h3>${block.title}</h3>
+              <ul>${block.details.map((detail) => `<li>${detail}</li>`).join("")}</ul>
+            `,
+          )
+          .join("")}
+      </section>
+      ${
+        summary.studySequence?.length
+          ? `<section class="sheet">
+              <h2>ترتيب المراجعة</h2>
+              <ul>${summary.studySequence.map((item) => `<li>${item}</li>`).join("")}</ul>
+            </section>`
+          : ""
+      }
       <section class="sheet">
         <h2>Memory hooks</h2>
         <ul>${summary.memoryHooks.map((item) => `<li>${item}</li>`).join("")}</ul>
@@ -112,6 +133,22 @@ function summaryHtml(summaryId: string) {
         <h2>حركات امتحانية</h2>
         <ul>${summary.examMoves.map((item) => `<li>${item}</li>`).join("")}</ul>
       </section>
+      ${
+        summary.commonTraps?.length
+          ? `<section class="sheet">
+              <h2>أخطاء شائعة</h2>
+              <ul>${summary.commonTraps.map((item) => `<li>${item}</li>`).join("")}</ul>
+            </section>`
+          : ""
+      }
+      ${
+        summary.quickChecks?.length
+          ? `<section class="sheet">
+              <h2>فحص سريع</h2>
+              <ul>${summary.quickChecks.map((item) => `<li>${item}</li>`).join("")}</ul>
+            </section>`
+          : ""
+      }
     `,
   );
 }

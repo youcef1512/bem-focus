@@ -1,13 +1,23 @@
 import { startTransition, useDeferredValue, useState } from "react";
 import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
-import { buildInteractiveExam, examSourceFor, examSources, subjects, subjectById, type SubjectId } from "../content";
+import {
+  buildInteractiveExam,
+  examDossierFor,
+  examSourceFor,
+  examSources,
+  subjectById,
+  subjects,
+  type SubjectId,
+} from "../content";
 import { PrintActions, SectionHeading, Surface } from "../components/AppChrome";
+import { ExamPromptWorkbench } from "../components/ExamPromptWorkbench";
 import { PracticeDeck } from "../components/PracticeDeck";
 
 export function ExamsPage() {
   const [query, setQuery] = useState("");
   const [activeSubject, setActiveSubject] = useState<SubjectId | "all">("all");
   const deferredQuery = useDeferredValue(query);
+
   const filtered = examSources.filter((entry) => {
     const matchesSubject = activeSubject === "all" || entry.subjectId === activeSubject;
     const matchesQuery =
@@ -22,7 +32,7 @@ export function ExamsPage() {
   return (
     <>
       <SectionHeading
-        description="كل السنوات من 2016 إلى 2025 مفهرسة. الرياضيات عندها إعادة تفاعلية أعمق، وباقي المواد عندها guided drills مع روابط PDF الأصلية."
+        description="كل السنوات من 2016 إلى 2025 مفهرسة. كل صفحة امتحان فيها الورشة التفاعلية أولًا، ثم PDF الأصلي والتصحيح داخل المنصة."
         eyebrow="BEM archive"
         title="امتحانات BEM السابقة"
       />
@@ -78,7 +88,7 @@ export function ExamsPage() {
                 <p>
                   {entry.availability === "interactive"
                     ? "Interactive remake + remix"
-                    : "Full guided sections + hosted PDF"}
+                    : "Full-paper reconstruction dossier + hosted PDF"}
                 </p>
               </div>
               <div className="hero-actions">
@@ -113,6 +123,7 @@ export function ExamDetailPage() {
   }
 
   const source = examSourceFor(subjectId, year);
+  const dossier = examDossierFor(subjectId, year);
   if (!source) {
     return <Navigate replace to="/past-exams" />;
   }
@@ -127,7 +138,11 @@ export function ExamDetailPage() {
   return (
     <>
       <Surface className="lesson-hero">
-        <SectionHeading eyebrow="Exam workbench" title={`${subjectById[subjectId].name} ${year}`} description={exam.summary} />
+        <SectionHeading
+          eyebrow="Exam workbench"
+          title={`${subjectById[subjectId].name} ${year}`}
+          description={exam.summary}
+        />
         <div className="hero-actions">
           <button
             className={mode === "original" ? "action-button" : "action-button action-button--ghost"}
@@ -144,7 +159,11 @@ export function ExamDetailPage() {
             Remix mode
           </button>
           {subjectId === "math" && mode === "remix" ? (
-            <button className="action-button action-button--ghost" onClick={() => setSeed((value) => value + 1)} type="button">
+            <button
+              className="action-button action-button--ghost"
+              onClick={() => setSeed((value) => value + 1)}
+              type="button"
+            >
               بدل الأرقام
             </button>
           ) : null}
@@ -168,16 +187,31 @@ export function ExamDetailPage() {
         </div>
       </Surface>
 
+      {dossier ? (
+        <Surface>
+          <SectionHeading
+            eyebrow="Reconstruction dossier"
+            title="إعادة بناء الامتحان من الصفحات الأصلية"
+            description={`الورشة تبدأ من السؤال الأصلي نفسه لسنة ${year}. إذا كان OCR ناقصًا في سطر واحد، ثبتيه من PDF ثم واصلي هنا.`}
+          />
+          <div className="lesson-meta">
+            <span className="meta-pill">{dossier.pageCount} pages</span>
+            <span className="meta-pill meta-pill--warm">{dossier.prompts.length} extracted prompts</span>
+            <span className="meta-pill">{dossier.ocrLanguage}</span>
+          </div>
+          <ExamPromptWorkbench dossier={dossier} />
+        </Surface>
+      ) : null}
+
       <Surface>
         <SectionHeading
           eyebrow="Hosted archive"
           title="نسخة PDF كاملة داخل منصتنا"
-          description="هذه النسخة تُحمّل أثناء البناء وتُستضاف على نفس النطاق، حتى ما نبقاوش مرتبطين بروابط خارجية وقت الاستعمال."
+          description="الورشة التفاعلية فوق هي نقطة البداية. هذه النسخة الكاملة تبقى مرجعًا للتثبيت إذا كان OCR ناقصًا في سطر أو صورة أو جدول."
         />
         {!source.localPaperPath || !source.localCorrectionPath ? (
           <p className="callout">
-            بعض ملفات هذه السنة ناقصة من المصدر الأصلي. المنصة تعرض ما تم استضافته
-            محلياً وتبقي رابط المصدر كخطة احتياط.
+            بعض ملفات هذه السنة ناقصة من المصدر الأصلي. المنصة تعرض ما تم استضافته محليًا وتبقي رابط المصدر كخطة احتياط.
           </p>
         ) : null}
         <div className="two-column-grid">
@@ -200,12 +234,33 @@ export function ExamDetailPage() {
         </div>
       </Surface>
 
-      {exam.sections.map((section) => (
-        <Surface key={section.title}>
-          <SectionHeading eyebrow="Exam section" title={section.title} description={section.note} />
-          <PracticeDeck questions={section.questions} title={section.title} />
-        </Surface>
-      ))}
+      <Surface>
+        <SectionHeading
+          eyebrow={mode === "original" ? "After the original paper" : "Remix training"}
+          title={
+            mode === "original"
+              ? "ثبتي الفكرة بعد الورقة الأصلية"
+              : "نفس المهارات بصيغة تدريبية"
+          }
+          description={
+            mode === "original"
+              ? "بعد ما تكملي السؤال من الورقة الأصلية، استعملي هذا الجزء لتثبيت نفس المهارة بأسئلة أوضح ومصحوبة بتغذية راجعة."
+              : "هذه النسخة تحافظ على بنية المهارة لكن تغيّر الصياغة أو الأرقام حتى يكون الفهم حقيقيًا."
+          }
+        />
+        <div className="list-stack">
+          {exam.sections.map((section) => (
+            <article key={section.title} className="lesson-section">
+              <SectionHeading
+                eyebrow="Skill transfer"
+                title={section.title}
+                description={section.note}
+              />
+              <PracticeDeck questions={section.questions} title={section.title} />
+            </article>
+          ))}
+        </div>
+      </Surface>
     </>
   );
 }

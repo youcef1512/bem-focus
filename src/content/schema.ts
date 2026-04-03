@@ -73,6 +73,11 @@ export type LessonSection = {
   callout?: string;
 };
 
+export type ProgramBlock = {
+  title: string;
+  details: string[];
+};
+
 export type Lesson = {
   id: string;
   subjectId: SubjectId;
@@ -101,6 +106,10 @@ export type SummarySheet = {
   memoryHooks: string[];
   formulas?: { label: string; value: string }[];
   examMoves: string[];
+  studySequence?: string[];
+  commonTraps?: string[];
+  quickChecks?: string[];
+  programSections?: ProgramBlock[];
   sourceRefs: string[];
 };
 
@@ -112,10 +121,7 @@ export type Subject = {
   emphasis: "highest" | "high" | "medium";
   overview: string;
   focusAreas: string[];
-  roadmap: {
-    title: string;
-    details: string[];
-  }[];
+  roadmap: ProgramBlock[];
   coaching: string;
   lessonIds: string[];
   summaryIds: string[];
@@ -137,6 +143,57 @@ export type ExamSection = {
   title: string;
   note: string;
   questions: PracticeQuestion[];
+};
+
+export type ExamPromptKind =
+  | "multiple-choice"
+  | "ordering"
+  | "calculation"
+  | "writing"
+  | "analysis"
+  | "response";
+
+export type ExamPromptCard = {
+  id: string;
+  pageNumber: number;
+  sectionTitle: string;
+  prompt: string;
+  kind: ExamPromptKind;
+  skillTag: string;
+  linkedTopics: string[];
+  options: string[];
+  originalLines: string[];
+  recallFirst: string;
+  startSteps: string[];
+  answerFrame: string[];
+  pitfalls: string[];
+  selfCheck: string[];
+};
+
+export type ExamDossierPage = {
+  pageNumber: number;
+  headline: string[];
+  transcript: string[];
+  promptIds: string[];
+};
+
+export type ExamDossierSection = {
+  title: string;
+  promptIds: string[];
+  pageNumbers: number[];
+};
+
+export type ExamDossier = {
+  id: string;
+  subjectId: SubjectId;
+  year: number;
+  title: string;
+  sourcePaperPath: string;
+  pageCount: number;
+  ocrLanguage: string;
+  sections: ExamDossierSection[];
+  pages: ExamDossierPage[];
+  prompts: ExamPromptCard[];
 };
 
 export type InteractiveExam = {

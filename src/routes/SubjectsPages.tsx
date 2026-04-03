@@ -63,6 +63,7 @@ export function SubjectDetailPage() {
   const subjectLessons = subject.lessonIds.map((lessonId) => lessonById[lessonId]);
   const subjectSummaries = subject.summaryIds.map((summaryId) => summaryById[summaryId]);
   const subjectExams = examsForSubject(subject.id);
+  const primaryProgramme = subjectSummaries[0]?.programSections ?? subject.roadmap;
 
   return (
     <>
@@ -105,7 +106,7 @@ export function SubjectDetailPage() {
           description="هذه ليست عناوين عامة فقط. هذا هو تقسيم المراجعة العملي داخل المادة."
         />
         <div className="list-stack">
-          {subject.roadmap.map((block) => (
+          {primaryProgramme.map((block) => (
             <article key={block.title} className="lesson-section">
               <h3>{block.title}</h3>
               <ul className="inline-list">

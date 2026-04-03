@@ -130,31 +130,84 @@ export function SummariesPage() {
   return (
     <>
       <SectionHeading
-        description="صفحات قصيرة للطباعة أو Save as PDF، مع hooks للذاكرة وحركات امتحانية."
+        description="ملخصات قابلة للطباعة تغطي الآن خط المراجعة والبرنامج الكامل داخل كل مادة، وليس فقط أمثلة معزولة."
         eyebrow="Summary sheets"
         title="الملخصات"
       />
       <div className="subject-grid">
         {summarySheets.map((summary) => (
           <Surface key={summary.id} className="summary-card">
-            <p className="eyebrow">{subjects.find((subject) => subject.id === summary.subjectId)?.name}</p>
-            <h3>{summary.title}</h3>
-            <ul className="inline-list">
-              {summary.recap.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            {summary.formulas ? (
-              <div className="formula-grid">
-                {summary.formulas.map((formula) => (
-                  <div key={formula.label} className="formula-pill">
-                    <strong>{formula.label}</strong>
-                    <span>{formula.value}</span>
+            {(() => {
+              const subject = subjects.find((entry) => entry.id === summary.subjectId);
+              if (!subject) {
+                return null;
+              }
+
+              return (
+                <>
+                  <p className="eyebrow">{subject.name}</p>
+                  <h3>{summary.title}</h3>
+                  <ul className="inline-list">
+                    {summary.recap.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <div className="list-stack summary-program">
+                    {(summary.programSections ?? subject.roadmap).map((block) => (
+                      <article key={`${summary.id}-${block.title}`} className="lesson-section">
+                        <h4>{block.title}</h4>
+                        <ul className="inline-list">
+                          {block.details.map((detail) => (
+                            <li key={detail}>{detail}</li>
+                          ))}
+                        </ul>
+                      </article>
+                    ))}
                   </div>
-                ))}
-              </div>
-            ) : null}
-            <PrintActions htmlDownloadPath={`/downloads/summaries/${summary.id}.html`} />
+                  {summary.studySequence?.length ? (
+                    <div className="summary-support">
+                      <h4>ترتيب المراجعة</h4>
+                      <ul className="inline-list">
+                        {summary.studySequence.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  {summary.formulas ? (
+                    <div className="formula-grid">
+                      {summary.formulas.map((formula) => (
+                        <div key={formula.label} className="formula-pill">
+                          <strong>{formula.label}</strong>
+                          <span>{formula.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                  {summary.commonTraps?.length ? (
+                    <div className="summary-support">
+                      <h4>أخطاء شائعة</h4>
+                      <ul className="inline-list">
+                        {summary.commonTraps.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  {summary.quickChecks?.length ? (
+                    <div className="summary-support">
+                      <h4>فحص سريع قبل الانتقال</h4>
+                      <ul className="inline-list">
+                        {summary.quickChecks.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  <PrintActions htmlDownloadPath={`/downloads/summaries/${summary.id}.html`} />
+                </>
+              );
+            })()}
           </Surface>
         ))}
       </div>
