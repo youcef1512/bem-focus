@@ -1,6 +1,21 @@
 # Mission Log
 
 ## Latest Run
+- Timestamp: 2026-04-03 07:24:05 -07:00
+- Mission: BEM-FOCUS-DEEP-CURRICULUM-AND-HOSTED-EXAMS
+- Status: Complete
+- Note: Continued from the earlier BEM Focus deployment and deepened the platform to address the student's feedback that the content felt abstract and that many key dates were still missing.
+- Note: Expanded the lesson layer with new Arabic, French, English, history, physics, science, Islamic studies, and civics lessons so non-math subjects are no longer single-lesson sketches.
+- Note: Added a dedicated history dates lesson plus a new printable summary sheet for exact dates, and expanded the history page so the full chronology surface is visible instead of a tiny subset.
+- Note: Rebuilt the non-math interactive exam engine into multi-section subject-shaped practice packs with comprehension, language/concepts, and writing/application sections.
+- Note: Kept the hosted archive flow active: the build downloaded and re-hosted 90 exam assets into `public/backend/exams` with 0 upstream issues locally and on Vercel.
+- Note: Regenerated the offline pack and standalone HTML exports so the new lessons and the new history-dates summary are downloadable on Windows.
+- Note: Verification passed locally with `npm run lint`, `npm test`, `npm run test:e2e`, and `npm run build`.
+- Note: Pushed commit `a4b73a5` to https://github.com/youcef1512/bem-focus on branch `codex/bem-focus`.
+- Note: Created a fresh Vercel preview deployment: https://bem-focus-61j258t4g-youcef-toumis-projects.vercel.app .
+- Note: Inspector URL: https://vercel.com/youcef-toumis-projects/bem-focus/5GjmjwGHigi6TMU7UmJuHsrnoD4m .
+
+## Previous Run
 - Timestamp: 2026-04-03 01:47:00 -07:00
 - Mission: BEM-FOCUS-4AM-BREVET-PLATFORM
 - Status: Complete
