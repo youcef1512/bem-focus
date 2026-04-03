@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { examSources, studyPlan, subjects } from "../src/content";
+import { buildInteractiveExam, examSources, lessons, studyPlan, subjects } from "../src/content";
 import { buildMathExamSections } from "../src/features/math/remix";
 import { isQuestionCorrect } from "../src/features/practice/evaluation";
 
@@ -17,6 +17,28 @@ describe("archive manifest", () => {
     expect(new Set(examSources.map((entry) => entry.subjectId)).size).toBe(
       subjects.length,
     );
+  });
+
+  it("hosts most papers and corrections locally after hydration", () => {
+    expect(examSources.filter((entry) => entry.localPaperPath).length).toBeGreaterThanOrEqual(75);
+    expect(examSources.filter((entry) => entry.localCorrectionPath).length).toBeGreaterThanOrEqual(75);
+  });
+});
+
+describe("content depth", () => {
+  it("gives every non-math subject at least two lessons", () => {
+    for (const subject of subjects.filter((entry) => entry.id !== "math")) {
+      expect(lessons.filter((lesson) => lesson.subjectId === subject.id).length).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it("builds multi-section guided exams outside math", () => {
+    for (const subject of subjects.filter((entry) => entry.id !== "math")) {
+      const exam = buildInteractiveExam(subject.id, 2025, "original");
+      expect(exam).toBeDefined();
+      expect(exam?.sections.length).toBeGreaterThanOrEqual(3);
+      expect(exam?.sections.flatMap((section) => section.questions).length).toBeGreaterThanOrEqual(6);
+    }
   });
 });
 

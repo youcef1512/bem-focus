@@ -62,7 +62,7 @@ export function SubjectDetailPage() {
 
   const subjectLessons = subject.lessonIds.map((lessonId) => lessonById[lessonId]);
   const subjectSummaries = subject.summaryIds.map((summaryId) => summaryById[summaryId]);
-  const subjectExams = examsForSubject(subject.id).slice(0, 5);
+  const subjectExams = examsForSubject(subject.id);
 
   return (
     <>
@@ -99,6 +99,26 @@ export function SubjectDetailPage() {
       </Surface>
 
       <Surface>
+        <SectionHeading
+          eyebrow="Programme map"
+          title="خريطة المراجعة بعمق"
+          description="هذه ليست عناوين عامة فقط. هذا هو تقسيم المراجعة العملي داخل المادة."
+        />
+        <div className="list-stack">
+          {subject.roadmap.map((block) => (
+            <article key={block.title} className="lesson-section">
+              <h3>{block.title}</h3>
+              <ul className="inline-list">
+                {block.details.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </Surface>
+
+      <Surface>
         <SectionHeading eyebrow="Summaries" title="ملخصات سريعة" />
         <div className="list-stack">
           {subjectSummaries.map((summary) => (
@@ -120,7 +140,11 @@ export function SubjectDetailPage() {
       </Surface>
 
       <Surface>
-        <SectionHeading eyebrow="Archive" title="آخر المواضيع المرتبطة بالمادة" />
+        <SectionHeading
+          eyebrow="Archive"
+          title="كل امتحانات 2016-2025 المرتبطة بالمادة"
+          description="النسخ التفاعلية وملفات PDF المستضافة داخل المنصة موجودة هنا كاملة، ماشي غير آخر خمس سنوات."
+        />
         <div className="list-stack">
           {subjectExams.map((exam) => (
             <div key={`${exam.subjectId}-${exam.year}`} className="list-row">
@@ -132,7 +156,11 @@ export function SubjectDetailPage() {
                 <Link className="action-button" to={`/past-exams/${exam.subjectId}/${exam.year}`}>
                   فتح التمرين التفاعلي
                 </Link>
-                <a className="action-button action-button--ghost" href={exam.paperUrl} target="_blank">
+                <a
+                  className="action-button action-button--ghost"
+                  href={exam.localPaperPath ?? exam.paperUrl}
+                  target="_blank"
+                >
                   PDF
                 </a>
               </div>

@@ -112,6 +112,10 @@ export type Subject = {
   emphasis: "highest" | "high" | "medium";
   overview: string;
   focusAreas: string[];
+  roadmap: {
+    title: string;
+    details: string[];
+  }[];
   coaching: string;
   lessonIds: string[];
   summaryIds: string[];
@@ -123,6 +127,8 @@ export type ExamSource = {
   label: string;
   paperUrl: string;
   correctionUrl: string;
+  localPaperPath?: string;
+  localCorrectionPath?: string;
   sourcePage: string;
   availability: "interactive" | "guided" | "paper";
 };

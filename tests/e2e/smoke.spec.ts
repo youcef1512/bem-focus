@@ -2,29 +2,22 @@ import { expect, test } from "@playwright/test";
 
 test("main routes render", async ({ page }) => {
   await page.goto("/");
-  await expect(
-    page.getByRole("heading", { name: /برنامج قصير، واضح/ }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /برنامج قصير، واضح/ })).toBeVisible();
 
   await page.goto("/subjects/math");
-  await expect(
-    page.getByRole("heading", { name: /الرياضيات/ }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /الرياضيات/ })).toBeVisible();
 
   await page.goto("/lessons/math-geometry");
-  await expect(
-    page.getByRole("heading", { name: /رياضيات: المثلثات/ }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /رياضيات: المثلثات/ })).toBeVisible();
 
   await page.goto("/past-exams/math/2025");
-  await expect(
-    page.getByRole("heading", { name: /الرياضيات 2025|رياضيات BEM 2025/i }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /الرياضيات 2025|رياضيات BEM 2025/i })).toBeVisible();
 
   await page.goto("/downloads");
-  await expect(
-    page.getByRole("heading", { name: /التحميلات والطباعة/ }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /التحميلات والطباعة/ })).toBeVisible();
+
+  await page.goto("/history-timeline");
+  await expect(page.getByText(/19 مارس 1962/).first()).toBeVisible();
 });
 
 test("print css hides the top bar", async ({ page }) => {
@@ -39,4 +32,9 @@ test("print css hides the top bar", async ({ page }) => {
 test("offline lesson html opens", async ({ page }) => {
   await page.goto("/downloads/lessons/math-algebra.html");
   await expect(page.getByRole("heading", { name: /رياضيات: إصلاح الجبر/ })).toBeVisible();
+});
+
+test("hosted pdf iframe is present on exam page", async ({ page }) => {
+  await page.goto("/past-exams/math/2025");
+  await expect(page.locator('iframe[title="paper-math-2025"]')).toBeVisible();
 });

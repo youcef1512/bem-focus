@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T08:41:33.908Z",
+  "generatedAt": "2026-04-03T14:16:27.263Z",
   "source": "https://www.bem-algerie.net/sujets.html",
   "entries": [
     {
@@ -9,7 +9,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2016.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2016/2016-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2016/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2016/arabic-correction.pdf"
     },
     {
       "year": 2017,
@@ -18,7 +20,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2017.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2017/2017-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2017/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2017/arabic-correction.pdf"
     },
     {
       "year": 2018,
@@ -27,7 +31,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2018.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2018/2018-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2018/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2018/arabic-correction.pdf"
     },
     {
       "year": 2019,
@@ -36,7 +42,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2019.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2019/2019-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2019/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2019/arabic-correction.pdf"
     },
     {
       "year": 2020,
@@ -45,7 +53,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2020.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2020/2020-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2020/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2020/arabic-correction.pdf"
     },
     {
       "year": 2021,
@@ -54,7 +64,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2021.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2021/2021-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2021/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2021/arabic-correction.pdf"
     },
     {
       "year": 2022,
@@ -63,7 +75,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2022.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2022/2022-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2022/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2022/arabic-correction.pdf"
     },
     {
       "year": 2023,
@@ -72,7 +86,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2023.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2023/2023-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2023/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2023/arabic-correction.pdf"
     },
     {
       "year": 2024,
@@ -81,7 +97,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2024.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2024/2024-ar.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-ar-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-ar-sol.pdf",
+      "localPaperPath": "/backend/exams/2024/arabic-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2024/arabic-correction.pdf"
     },
     {
       "year": 2025,
@@ -99,7 +117,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2016.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2016/2016-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2016/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2016/civics-correction.pdf"
     },
     {
       "year": 2017,
@@ -108,7 +128,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2017.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2017/2017-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2017/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2017/civics-correction.pdf"
     },
     {
       "year": 2018,
@@ -117,7 +139,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2018.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2018/2018-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2018/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2018/civics-correction.pdf"
     },
     {
       "year": 2019,
@@ -126,7 +150,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2019.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2019/2019-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2019/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2019/civics-correction.pdf"
     },
     {
       "year": 2020,
@@ -135,7 +161,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2020.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2020/2020-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2020/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2020/civics-correction.pdf"
     },
     {
       "year": 2021,
@@ -144,7 +172,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2021.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2021/2021-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2021/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2021/civics-correction.pdf"
     },
     {
       "year": 2022,
@@ -153,7 +183,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2022.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2022/2022-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2022/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2022/civics-correction.pdf"
     },
     {
       "year": 2023,
@@ -162,7 +194,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2023.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2023/2023-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2023/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2023/civics-correction.pdf"
     },
     {
       "year": 2024,
@@ -171,7 +205,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2024.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2024/2024-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2024/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2024/civics-correction.pdf"
     },
     {
       "year": 2025,
@@ -180,7 +216,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2025.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2025/2025-cv.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-cv-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-cv-sol.pdf",
+      "localPaperPath": "/backend/exams/2025/civics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2025/civics-correction.pdf"
     },
     {
       "year": 2016,
@@ -189,7 +227,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2016.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2016/2016-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2016/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2016/english-correction.pdf"
     },
     {
       "year": 2017,
@@ -198,7 +238,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2017.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2017/2017-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2017/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2017/english-correction.pdf"
     },
     {
       "year": 2018,
@@ -207,7 +249,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2018.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2018/2018-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2018/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2018/english-correction.pdf"
     },
     {
       "year": 2019,
@@ -216,7 +260,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2019.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2019/2019-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2019/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2019/english-correction.pdf"
     },
     {
       "year": 2020,
@@ -225,7 +271,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2020.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2020/2020-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2020/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2020/english-correction.pdf"
     },
     {
       "year": 2021,
@@ -234,7 +282,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2021.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2021/2021-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2021/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2021/english-correction.pdf"
     },
     {
       "year": 2022,
@@ -243,7 +293,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2022.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2022/2022-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2022/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2022/english-correction.pdf"
     },
     {
       "year": 2023,
@@ -252,7 +304,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2023.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2023/2023-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2023/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2023/english-correction.pdf"
     },
     {
       "year": 2024,
@@ -261,7 +315,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2024.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2024/2024-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2024/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2024/english-correction.pdf"
     },
     {
       "year": 2025,
@@ -270,7 +326,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2025.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2025/2025-english.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-english-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-english-sol.pdf",
+      "localPaperPath": "/backend/exams/2025/english-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2025/english-correction.pdf"
     },
     {
       "year": 2016,
@@ -279,7 +337,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2016.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2016/2016-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2016/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2016/french-correction.pdf"
     },
     {
       "year": 2017,
@@ -288,7 +348,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2017.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2017/2017-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2017/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2017/french-correction.pdf"
     },
     {
       "year": 2018,
@@ -297,7 +359,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2018.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2018/2018-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2018/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2018/french-correction.pdf"
     },
     {
       "year": 2019,
@@ -306,7 +370,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2019.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2019/2019-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2019/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2019/french-correction.pdf"
     },
     {
       "year": 2020,
@@ -315,7 +381,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2020.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2020/2020-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2020/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2020/french-correction.pdf"
     },
     {
       "year": 2021,
@@ -324,7 +392,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2021.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2021/2021-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2021/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2021/french-correction.pdf"
     },
     {
       "year": 2022,
@@ -333,7 +403,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2022.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2022/2022-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2022/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2022/french-correction.pdf"
     },
     {
       "year": 2023,
@@ -342,7 +414,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2023.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2023/2023-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2023/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2023/french-correction.pdf"
     },
     {
       "year": 2024,
@@ -351,7 +425,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2024.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2024/2024-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2024/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2024/french-correction.pdf"
     },
     {
       "year": 2025,
@@ -360,7 +436,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2025.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2025/2025-francais.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-francais-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-francais-sol.pdf",
+      "localPaperPath": "/backend/exams/2025/french-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2025/french-correction.pdf"
     },
     {
       "year": 2016,
@@ -369,7 +447,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2016.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2016/2016-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2016/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2016/historygeo-correction.pdf"
     },
     {
       "year": 2017,
@@ -378,7 +458,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2017.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2017/2017-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2017/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2017/historygeo-correction.pdf"
     },
     {
       "year": 2018,
@@ -387,7 +469,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2018.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2018/2018-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2018/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2018/historygeo-correction.pdf"
     },
     {
       "year": 2019,
@@ -396,7 +480,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2019.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2019/2019-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2019/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2019/historygeo-correction.pdf"
     },
     {
       "year": 2020,
@@ -405,7 +491,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2020.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2020/2020-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2020/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2020/historygeo-correction.pdf"
     },
     {
       "year": 2021,
@@ -414,7 +502,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2021.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2021/2021-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2021/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2021/historygeo-correction.pdf"
     },
     {
       "year": 2022,
@@ -423,7 +513,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2022.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2022/2022-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2022/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2022/historygeo-correction.pdf"
     },
     {
       "year": 2023,
@@ -432,7 +524,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2023.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2023/2023-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2023/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2023/historygeo-correction.pdf"
     },
     {
       "year": 2024,
@@ -441,7 +535,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2024.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2024/2024-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2024/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2024/historygeo-correction.pdf"
     },
     {
       "year": 2025,
@@ -450,7 +546,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2025.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2025/2025-histogeo.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-histogeo-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-histogeo-sol.pdf",
+      "localPaperPath": "/backend/exams/2025/historygeo-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2025/historygeo-correction.pdf"
     },
     {
       "year": 2016,
@@ -549,7 +647,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2016.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2016/2016-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2016/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2016/math-correction.pdf"
     },
     {
       "year": 2017,
@@ -558,7 +658,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2017.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2017/2017-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2017/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2017/math-correction.pdf"
     },
     {
       "year": 2018,
@@ -567,7 +669,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2018.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2018/2018-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2018/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2018/math-correction.pdf"
     },
     {
       "year": 2019,
@@ -576,7 +680,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2019.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2019/2019-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2019/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2019/math-correction.pdf"
     },
     {
       "year": 2020,
@@ -585,7 +691,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2020.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2020/2020-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2020/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2020/math-correction.pdf"
     },
     {
       "year": 2021,
@@ -594,7 +702,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2021.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2021/2021-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2021/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2021/math-correction.pdf"
     },
     {
       "year": 2022,
@@ -603,7 +713,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2022.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2022/2022-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2022/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2022/math-correction.pdf"
     },
     {
       "year": 2023,
@@ -612,7 +724,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2023.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2023/2023-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2023/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2023/math-correction.pdf"
     },
     {
       "year": 2024,
@@ -621,7 +735,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2024.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2024/2024-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2024/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2024/math-correction.pdf"
     },
     {
       "year": 2025,
@@ -630,7 +746,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2025.html",
       "availability": "interactive",
       "paperUrl": "https://www.bem-algerie.net/sujets/2025/2025-math.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-math-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-math-sol.pdf",
+      "localPaperPath": "/backend/exams/2025/math-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2025/math-correction.pdf"
     },
     {
       "year": 2016,
@@ -639,7 +757,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2016.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2016/2016-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2016/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2016/physics-correction.pdf"
     },
     {
       "year": 2017,
@@ -648,7 +768,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2017.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2017/2017-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2017/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2017/physics-correction.pdf"
     },
     {
       "year": 2018,
@@ -657,7 +779,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2018.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2018/2018-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2018/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2018/physics-correction.pdf"
     },
     {
       "year": 2019,
@@ -666,7 +790,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2019.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2019/2019-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2019/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2019/physics-correction.pdf"
     },
     {
       "year": 2020,
@@ -675,7 +801,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2020.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2020/2020-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2020/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2020/physics-correction.pdf"
     },
     {
       "year": 2021,
@@ -684,7 +812,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2021.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2021/2021-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2021/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2021/physics-correction.pdf"
     },
     {
       "year": 2022,
@@ -693,7 +823,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2022.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2022/2022-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2022/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2022/physics-correction.pdf"
     },
     {
       "year": 2023,
@@ -702,7 +834,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2023.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2023/2023-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2023/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2023/physics-correction.pdf"
     },
     {
       "year": 2024,
@@ -711,7 +845,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2024.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2024/2024-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2024/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2024/physics-correction.pdf"
     },
     {
       "year": 2025,
@@ -720,7 +856,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2025.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2025/2025-physique.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-physique-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-physique-sol.pdf",
+      "localPaperPath": "/backend/exams/2025/physics-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2025/physics-correction.pdf"
     },
     {
       "year": 2016,
@@ -729,7 +867,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2016.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2016/2016-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2016/2016-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2016/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2016/science-correction.pdf"
     },
     {
       "year": 2017,
@@ -738,7 +878,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2017.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2017/2017-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2017/2017-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2017/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2017/science-correction.pdf"
     },
     {
       "year": 2018,
@@ -747,7 +889,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2018.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2018/2018-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2018/2018-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2018/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2018/science-correction.pdf"
     },
     {
       "year": 2019,
@@ -756,7 +900,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2019.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2019/2019-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2019/2019-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2019/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2019/science-correction.pdf"
     },
     {
       "year": 2020,
@@ -765,7 +911,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2020.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2020/2020-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2020/2020-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2020/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2020/science-correction.pdf"
     },
     {
       "year": 2021,
@@ -774,7 +922,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2021.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2021/2021-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2021/2021-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2021/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2021/science-correction.pdf"
     },
     {
       "year": 2022,
@@ -783,7 +933,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2022.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2022/2022-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2022/2022-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2022/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2022/science-correction.pdf"
     },
     {
       "year": 2023,
@@ -792,7 +944,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2023.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2023/2023-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2023/2023-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2023/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2023/science-correction.pdf"
     },
     {
       "year": 2024,
@@ -801,7 +955,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2024.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2024/2024-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2024/2024-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2024/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2024/science-correction.pdf"
     },
     {
       "year": 2025,
@@ -810,7 +966,9 @@
       "sourcePage": "https://www.bem-algerie.net/sujets-2025.html",
       "availability": "guided",
       "paperUrl": "https://www.bem-algerie.net/sujets/2025/2025-sciences.pdf",
-      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-sciences-sol.pdf"
+      "correctionUrl": "https://www.bem-algerie.net/sujets/2025/2025-sciences-sol.pdf",
+      "localPaperPath": "/backend/exams/2025/science-paper.pdf",
+      "localCorrectionPath": "/backend/exams/2025/science-correction.pdf"
     }
   ]
 }

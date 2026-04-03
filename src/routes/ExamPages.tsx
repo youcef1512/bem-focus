@@ -75,13 +75,21 @@ export function ExamsPage() {
                 <strong>
                   {subjectById[entry.subjectId].name} - {entry.year}
                 </strong>
-                <p>{entry.availability === "interactive" ? "Interactive remake + remix" : "Guided drill + source PDF"}</p>
+                <p>
+                  {entry.availability === "interactive"
+                    ? "Interactive remake + remix"
+                    : "Full guided sections + hosted PDF"}
+                </p>
               </div>
               <div className="hero-actions">
                 <Link className="action-button" to={`/past-exams/${entry.subjectId}/${entry.year}`}>
                   فتح
                 </Link>
-                <a className="action-button action-button--ghost" href={entry.paperUrl} target="_blank">
+                <a
+                  className="action-button action-button--ghost"
+                  href={entry.localPaperPath ?? entry.paperUrl}
+                  target="_blank"
+                >
                   PDF
                 </a>
               </div>
@@ -142,13 +150,53 @@ export function ExamDetailPage() {
           ) : null}
         </div>
         <div className="hero-actions">
-          <a className="action-button action-button--ghost" href={source.paperUrl} target="_blank">
-            الموضوع الأصلي PDF
+          <a
+            className="action-button action-button--ghost"
+            href={source.localPaperPath ?? source.paperUrl}
+            target="_blank"
+          >
+            الموضوع الكامل على منصتنا
           </a>
-          <a className="action-button action-button--ghost" href={source.correctionUrl} target="_blank">
-            التصحيح PDF
+          <a
+            className="action-button action-button--ghost"
+            href={source.localCorrectionPath ?? source.correctionUrl}
+            target="_blank"
+          >
+            التصحيح الكامل على منصتنا
           </a>
           <PrintActions />
+        </div>
+      </Surface>
+
+      <Surface>
+        <SectionHeading
+          eyebrow="Hosted archive"
+          title="نسخة PDF كاملة داخل منصتنا"
+          description="هذه النسخة تُحمّل أثناء البناء وتُستضاف على نفس النطاق، حتى ما نبقاوش مرتبطين بروابط خارجية وقت الاستعمال."
+        />
+        {!source.localPaperPath || !source.localCorrectionPath ? (
+          <p className="callout">
+            بعض ملفات هذه السنة ناقصة من المصدر الأصلي. المنصة تعرض ما تم استضافته
+            محلياً وتبقي رابط المصدر كخطة احتياط.
+          </p>
+        ) : null}
+        <div className="two-column-grid">
+          <div className="pdf-panel">
+            <h3>الموضوع الأصلي</h3>
+            <iframe
+              className="pdf-frame"
+              src={source.localPaperPath ?? source.paperUrl}
+              title={`paper-${subjectId}-${year}`}
+            />
+          </div>
+          <div className="pdf-panel">
+            <h3>التصحيح</h3>
+            <iframe
+              className="pdf-frame"
+              src={source.localCorrectionPath ?? source.correctionUrl}
+              title={`correction-${subjectId}-${year}`}
+            />
+          </div>
         </div>
       </Surface>
 

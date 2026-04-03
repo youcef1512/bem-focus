@@ -1,3 +1,4 @@
+import { deepLessons } from "./deepLessons";
 import type { Lesson } from "./schema";
 
 export const lessons: Lesson[] = [
@@ -799,4 +800,5 @@ export const lessons: Lesson[] = [
     examLinkYears: [2016, 2021, 2024, 2025],
     visual: "none",
   },
+  ...deepLessons,
 ];

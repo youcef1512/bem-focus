@@ -5,3 +5,4 @@ test-results/
 dist/
 .vercel/
 output/
+public/backend/exams/

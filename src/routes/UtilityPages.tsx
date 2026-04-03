@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { historyTimeline, studyPlan, summarySheets, subjects, lessons, researchResources } from "../content";
+import {
+  examSources,
+  historyTimeline,
+  lessons,
+  researchResources,
+  studyPlan,
+  subjects,
+  summarySheets,
+} from "../content";
 import { PrintActions, SectionHeading, Surface } from "../components/AppChrome";
 import { PracticeDeck } from "../components/PracticeDeck";
 
@@ -96,6 +104,22 @@ export function HistoryTimelinePage() {
         </div>
       </Surface>
       <Surface>
+        <SectionHeading
+          eyebrow="Dates first"
+          title="ورقة التواريخ الدقيقة"
+          description="هذه الورقة تجمع التواريخ اللي لازم يثبتو بصيغتهم الكاملة، ماشي فقط 8 محطات مختصرة."
+        />
+        <div className="inline-list">
+          {historyTimeline
+            .filter((event) => event.id !== "modern-algeria")
+            .map((event) => (
+              <span key={event.id} className="timeline-chip">
+                <strong>{event.yearLabel}</strong> {event.title}
+              </span>
+            ))}
+        </div>
+      </Surface>
+      <Surface>
         <PracticeDeck questions={timelineQuestions} title="ثبتي التسلسل الزمني" />
       </Surface>
     </>
@@ -139,6 +163,9 @@ export function SummariesPage() {
 }
 
 export function DownloadsPage() {
+  const hostedPaperCount = examSources.filter((entry) => entry.localPaperPath).length;
+  const hostedCorrectionCount = examSources.filter((entry) => entry.localCorrectionPath).length;
+
   return (
     <>
       <SectionHeading
@@ -176,6 +203,37 @@ export function DownloadsPage() {
               </div>
             </div>
           ))}
+        </div>
+      </Surface>
+
+      <Surface>
+        <SectionHeading
+          eyebrow="Hosted exam PDFs"
+          title="الأرشيف الكامل داخل منصتنا"
+          description={`هذه الملفات تُحمّل أثناء البناء وتُستضاف على نفس الدومين على شكل backend static assets. حالياً كاين ${hostedPaperCount} موضوعاً و${hostedCorrectionCount} تصحيحاً مستضافاً محلياً.`}
+        />
+        <div className="hero-actions">
+          <a className="action-button action-button--ghost" href="/backend/exams/manifest.json" target="_blank">
+            فتح manifest.json
+          </a>
+          <a className="action-button action-button--ghost" href="/backend/exams/issues.json" target="_blank">
+            فتح issues.json
+          </a>
+        </div>
+        <div className="list-stack">
+          {subjects.map((subject) => {
+            return (
+              <div key={subject.id} className="list-row">
+                <div>
+                  <strong>{subject.name}</strong>
+                  <p>مواضيع وتصحيحات 2016-2025 متاحة من صفحة الامتحانات داخل نفس المنصة.</p>
+                </div>
+                <Link className="action-button" to={`/past-exams/${subject.id}/2025`}>
+                  فتح آخر سنة
+                </Link>
+              </div>
+            );
+          })}
         </div>
       </Surface>
 
