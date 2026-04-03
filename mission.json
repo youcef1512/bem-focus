@@ -1,0 +1,27 @@
+{
+  "mission_id": "AUTO-CREATOR_PROCESS-20260403_012853",
+  "project": "MovieFactory Continuous Autopilot",
+  "phase": 1,
+  "goal": "Generate a creator_process short-form video automatically and archive it by type.",
+  "engine": {
+    "model": "gemma3:4b",
+    "provider": "ollama",
+    "endpoint": "http://localhost:11434/api/generate"
+  },
+  "human_gate": {
+    "vibe": "Trendy, bright, creator-energy, open daylight",
+    "pacing": "Fast hook, satisfying build, clean reveal",
+    "audience_feeling": "Curious first, then impressed, then inspired to share"
+  },
+  "inputs": {
+    "manifest_ref": "~/.dotfiles/gemini-skills/env_manifest.json",
+    "root_policy_ref": "./gemini.md",
+    "target_project_root": "C:\\Users\\toumi\\YoucefMohammed\\MovieFactory",
+    "vision": "A bright Berkeley creator short where a campus creator builds a tiny display piece at a bright stone walkway and the final look catches the light.",
+    "autopilot_type": "creator_process"
+  },
+  "success_criteria": {
+    "metric": "A valid stitched MP4 is archived into a type-specific autopilot output folder.",
+    "deployment": false
+  }
+}

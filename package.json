@@ -1,0 +1,39 @@
+{
+  "name": "bem-focus",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Interactive 4AM/BEM preparation system with printable lessons, summaries, and offline downloads.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run ingest:bem && npm run generate:downloads && vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "ingest:bem": "tsx scripts/ingest-bem.ts",
+    "generate:downloads": "tsx scripts/generate-downloads.ts",
+    "auth:google": "node ./scripts/import-google-session.mjs",
+    "open:gemini": "node ./scripts/open-google-app.mjs gemini",
+    "open:aistudio": "node ./scripts/open-google-app.mjs aistudio"
+  },
+  "dependencies": {
+    "framer-motion": "^12.9.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^24.7.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react-swc": "^4.1.0",
+    "archiver": "^7.0.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.10",
+    "vitest": "^3.2.4"
+  }
+}
