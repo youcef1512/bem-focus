@@ -1,9 +1,136 @@
 import { useMemo, useState } from "react";
-import type { ExamDossier } from "../content/schema";
+import { summaryById, subjectById } from "../content";
+import type { ExamDossier, ExamPromptCard, ProgramBlock, SubjectId } from "../content/schema";
 
 type ExamPromptWorkbenchProps = {
   dossier: ExamDossier;
 };
+
+type StairItem = {
+  title: string;
+  body: string;
+};
+
+function matchesTopic(block: ProgramBlock, topic: string) {
+  return (
+    block.title.includes(topic) ||
+    topic.includes(block.title) ||
+    block.details.some((detail) => detail.includes(topic) || topic.includes(detail))
+  );
+}
+
+function relevantProgramme(subjectId: SubjectId, prompt: ExamPromptCard) {
+  const subject = subjectById[subjectId];
+  const programme = subject.summaryIds
+    .map((summaryId) => summaryById[summaryId]?.programSections ?? [])
+    .flat();
+
+  const matches = programme.filter((block) =>
+    prompt.linkedTopics.some((topic) => matchesTopic(block, topic) || matchesTopic(block, prompt.skillTag)),
+  );
+
+  const deduped: ProgramBlock[] = [];
+  for (const block of matches) {
+    if (!deduped.some((entry) => entry.title === block.title)) {
+      deduped.push(block);
+    }
+  }
+
+  return deduped.slice(0, 3);
+}
+
+function buildStairs(subjectId: SubjectId, prompt: ExamPromptCard): StairItem[] {
+  const base = [
+    {
+      title: "1. ثبتي المحور",
+      body: `هذا السؤال تابع لمحور: ${prompt.skillTag}. قبل الجواب سميه بصوت واضح أو اكتبيه فوق الورقة.`,
+    },
+    {
+      title: "2. رجّعي الفكرة القبلية",
+      body: prompt.recallFirst,
+    },
+    {
+      title: "3. ابني بداية الحل",
+      body: prompt.startSteps[0] ?? "اكتبي أول خطوة صغيرة فقط ثم ثبتيها قبل الانتقال.",
+    },
+  ];
+
+  if (subjectId === "math" || prompt.kind === "calculation") {
+    return [
+      base[0],
+      {
+        title: "2. اكتبي المعطيات ثم المطلوب",
+        body: "لا تبدئي بالحساب مباشرة. سطري المعطيات، ثم اكتبي المطلوب، ثم القانون أو الفكرة المناسبة.",
+      },
+      {
+        title: "3. افتحي الحل بخطوة واحدة",
+        body: prompt.startSteps[0] ?? "اختاري أول تحويل أو أول قانون فقط، ثم اكملي بالتدرج.",
+      },
+      {
+        title: "4. راقبي الإشارة والوحدة",
+        body: "في آخر السطرين الأخيرين راجعي الإشارة، المعقولية، والوحدة النهائية.",
+      },
+    ];
+  }
+
+  if (subjectId === "historygeo" || subjectId === "civics" || subjectId === "islamic") {
+    return [
+      base[0],
+      {
+        title: "2. حددي نوع المطلوب",
+        body: "هل السؤال يطلب تاريخًا، تعريفًا، سببًا، نتيجةً، أم فقرةً؟ هذا يحدد شكل الجواب من البداية.",
+      },
+      {
+        title: "3. اربطي الجواب بدليل",
+        body: "بعد الفكرة الأساسية أضيفي تاريخًا أو مثالًا أو نتيجةً حتى لا يبقى الجواب عامًا.",
+      },
+      {
+        title: "4. اختمي بجملة مباشرة",
+        body: "الجواب القصير المنظم أفضل من كلام كثير بلا رابط واضح مع التعليمة.",
+      },
+    ];
+  }
+
+  if (subjectId === "arabic" || subjectId === "french" || subjectId === "english") {
+    return [
+      base[0],
+      {
+        title: "2. حددي هل هو فهم أم لغة أم كتابة",
+        body: "لا تخلطي بين سؤال الفهم وسؤال القاعدة أو الإنتاج. كل واحد عنده طريقة جواب مختلفة.",
+      },
+      {
+        title: "3. خذي كلمة مفتاحية من السند",
+        body: "في الفهم أو اللغة، استعملي كلمة دقيقة من النص أو القاعدة كي يبقى جوابك مربوطًا بالمطلوب.",
+      },
+      {
+        title: "4. اكتبي جوابًا نظيفًا",
+        body: "في الكتابة: افتتاحية قصيرة، فكرة واضحة، دعم صغير، ثم خاتمة قصيرة.",
+      },
+    ];
+  }
+
+  return base;
+}
+
+function buildTransferMission(subjectId: SubjectId, prompt: ExamPromptCard) {
+  if (subjectId === "math" || prompt.kind === "calculation") {
+    return "بعد هذا السؤال، أعيدي نفس الفكرة مع تغيير عدد واحد فقط: عدد أكبر، إشارة مختلفة، أو وحدة أخرى.";
+  }
+
+  if (subjectId === "historygeo") {
+    return "بعد الحل، حاولي إعادة نفس الجواب مرة ثانية لكن بصيغة: حدث -> سبب -> نتيجة.";
+  }
+
+  if (subjectId === "arabic") {
+    return "بعد الحل، اكتبي جملة ثانية بنفس الفكرة ولكن بكلماتك أنت، لا بالنسخ الحرفي من السند.";
+  }
+
+  if (subjectId === "french" || subjectId === "english") {
+    return "بعد الحل، أعيدي نفس المهارة في جملة أقصر وأوضح حتى يثبت النموذج الصحيح في الذاكرة.";
+  }
+
+  return "بعد الحل، أعيدي الجواب في سطر واحد منظم حتى تتأكد الفكرة الأساسية قبل الانتقال.";
+}
 
 export function ExamPromptWorkbench({ dossier }: ExamPromptWorkbenchProps) {
   const [sectionFilter, setSectionFilter] = useState<string>("all");
@@ -26,13 +153,27 @@ export function ExamPromptWorkbench({ dossier }: ExamPromptWorkbenchProps) {
     return dossier.prompts.filter((prompt) => visibleIds.has(prompt.id));
   }, [dossier.prompts, dossier.sections, sectionFilter]);
 
-  const current = filteredPrompts.find((prompt) => prompt.id === activePromptId) ?? filteredPrompts[0] ?? dossier.prompts[0];
+  const current =
+    filteredPrompts.find((prompt) => prompt.id === activePromptId) ??
+    filteredPrompts[0] ??
+    dossier.prompts[0];
   const currentIndex = filteredPrompts.findIndex((prompt) => prompt.id === current.id);
   const currentStepCount = revealedStepCount[current.id] ?? 0;
   const activePage =
     dossier.pages.find((page) => page.pageNumber === activePageNumber) ??
     dossier.pages.find((page) => page.pageNumber === current.pageNumber) ??
     dossier.pages[0];
+
+  const subject = subjectById[dossier.subjectId];
+  const stairs = useMemo(() => buildStairs(dossier.subjectId, current), [current, dossier.subjectId]);
+  const programmeMatches = useMemo(
+    () => relevantProgramme(dossier.subjectId, current),
+    [current, dossier.subjectId],
+  );
+  const transferMission = useMemo(
+    () => buildTransferMission(dossier.subjectId, current),
+    [current, dossier.subjectId],
+  );
 
   function jumpToPrompt(promptId: string) {
     const prompt = dossier.prompts.find((entry) => entry.id === promptId);
@@ -49,10 +190,9 @@ export function ExamPromptWorkbench({ dossier }: ExamPromptWorkbenchProps) {
       nextSection === "all"
         ? dossier.prompts
         : dossier.prompts.filter((prompt) =>
-            dossier.sections
-              .find((section) => section.title === nextSection)
-              ?.promptIds.includes(prompt.id),
+            dossier.sections.find((section) => section.title === nextSection)?.promptIds.includes(prompt.id),
           );
+
     if (targetPrompts[0]) {
       setActivePromptId(targetPrompts[0].id);
       setActivePageNumber(targetPrompts[0].pageNumber);
@@ -64,7 +204,7 @@ export function ExamPromptWorkbench({ dossier }: ExamPromptWorkbenchProps) {
       <div className="practice-header">
         <div>
           <p className="eyebrow">Original Exam Reconstruction</p>
-          <h3>الامتحان سؤالًا بسؤال مع نص الصفحات الأصلية</h3>
+          <h3>الورقة الأصلية مفككة إلى أسئلة مع سلم بناء قبل الجواب</h3>
         </div>
         <p className="practice-score">
           {currentIndex + 1} / {filteredPrompts.length}
@@ -118,6 +258,30 @@ export function ExamPromptWorkbench({ dossier }: ExamPromptWorkbenchProps) {
           </div>
 
           <div className="practice-card">
+            <p className="question-label">هذا السؤال مربوط بالبرنامج</p>
+            <p className="practice-context">{subject.name}</p>
+            <div className="programme-mini-stack">
+              {programmeMatches.length ? (
+                programmeMatches.map((block) => (
+                  <article key={`${current.id}-${block.title}`} className="programme-mini-card">
+                    <strong>{block.title}</strong>
+                    <ul className="inline-list">
+                      {block.details.slice(0, 5).map((detail) => (
+                        <li key={`${block.title}-${detail}`}>{detail}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))
+              ) : (
+                <p className="callout">
+                  هذا السؤال راجع غالبًا إلى محور <strong>{current.skillTag}</strong>. إذا شعرتِ أنه ثقيل، ارجعي أولًا
+                  إلى ملخص المادة ثم عودي إليه.
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="practice-card">
             <p className="question-label">صفحات الورقة الأصلية</p>
             <div className="exam-page-strip">
               {dossier.pages.map((page) => (
@@ -140,6 +304,18 @@ export function ExamPromptWorkbench({ dossier }: ExamPromptWorkbenchProps) {
         </aside>
 
         <div className="exam-main-column">
+          <div className="practice-card">
+            <p className="question-label">سلم البناء قبل الجواب</p>
+            <div className="stair-grid">
+              {stairs.map((item) => (
+                <article key={`${current.id}-${item.title}`} className="stair-card">
+                  <strong>{item.title}</strong>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
           <div className="practice-card">
             <div className="lesson-meta">
               <span className="meta-pill">Page {current.pageNumber}</span>
@@ -291,6 +467,11 @@ export function ExamPromptWorkbench({ dossier }: ExamPromptWorkbenchProps) {
                 ))}
               </div>
             ) : null}
+
+            <div className="transfer-note">
+              <strong>بعد ما تحلي:</strong>
+              <p>{transferMission}</p>
+            </div>
           </div>
 
           <div className="practice-nav">
@@ -332,9 +513,9 @@ export function ExamPromptWorkbench({ dossier }: ExamPromptWorkbenchProps) {
           <div className="practice-card">
             <p className="question-label">كيف تستعملي هذه الورشة</p>
             <div className="hint-stack">
-              <p>• افتحي السؤال من خريطة الورقة، ثم اقري السطر الأصلي قبل الحل.</p>
-              <p>• استعملي "فهم المطلوب" قبل "الخطوة التالية" حتى ما يكونش الحل آلي.</p>
-              <p>• إذا كان OCR ناقصًا في سطر واحد، ثبتيه من PDF ثم واصلي هنا.</p>
+              <p>• افتحي السؤال من الخريطة، ثم ثبتي المحور من سُلّم البناء قبل أن تبدئي الجواب.</p>
+              <p>• إذا كان السؤال ثقيلًا، ارجعي إلى المحور المرتبط به في البرنامج ثم عودي مباشرة إلى نفس السؤال.</p>
+              <p>• لا تنتقلي بسرعة. هدف هذه الورشة هو بناء طريقة حل قابلة للإعادة، وليس مجرد كتابة جواب واحد.</p>
             </div>
           </div>
         </aside>

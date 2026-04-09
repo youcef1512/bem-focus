@@ -1,6 +1,48 @@
 # Mission Log
 
 ## Latest Run
+- Timestamp: 2026-04-09 07:13:00 -07:00
+- Mission: BEM-FOCUS-YEAR-BY-YEAR-EXAM-RECONSTRUCTION-DEEPENING
+- Status: Complete with preview deployed
+- Note: Deepened the OCR exam reconstruction layer so Arabic-script exam pages are split more faithfully into question blocks and sub-prompts instead of collapsing to 1-3 abstract cards.
+- Note: Reworked `scripts/generate_exam_dossiers.py` with Arabic block-heading parsing for `السؤال`, `التمرين`, `الوضعية`, sub-prompt detection, and diacritic stripping to stabilize extraction across noisy BEM scans.
+- Note: Regenerated `src/data/examDossiers.generated.json`; representative coverage improved to `civics-2020 = 7 prompts`, `historygeo-2016 = 10 prompts`, `math-2025 = 20 prompts`, and `physics-2024 = 12 prompts`.
+- Note: Replaced the exam workbench UI with a more pedagogic flow that adds a programme-linked stair-step scaffold before the original question, relevant curriculum blocks in the sidebar, and a post-solution transfer mission.
+- Note: Added a Vitest scope guard in `vitest.config.ts` so root verification no longer runs unrelated test suites inside the untracked `never-miss-a-job` workspace.
+- Note: Visual verification screenshots captured at `C:\Users\toumi\Documents\New project 2\output\screenshots\exam-math-2025-deepened.png`, `C:\Users\toumi\Documents\New project 2\output\screenshots\exam-civics-2020-deepened.png`, and `C:\Users\toumi\Documents\New project 2\output\screenshots\summaries-programme-depth.png`.
+- Note: Verification passed locally with `npm test`, `npm run test:e2e`, `npm run build`, and `tsc --noEmit`.
+- Note: Created a fresh Vercel preview deployment: https://bem-focus-71uno8k84-youcef-toumis-projects.vercel.app .
+- Note: Inspector URL: https://vercel.com/youcef-toumis-projects/bem-focus/B9DpuVfbZXfUnqBqLcjukJYMWzwd .
+- Note: Direct fetch verification of the preview is blocked by Vercel Authentication (`401 Unauthorized`), so the deployed URL is protected even though the build reached `READY`.
+- Note: Deployed the updated production alias to https://bem-focus.vercel.app via deployment https://bem-focus-4izzwe2bg-youcef-toumis-projects.vercel.app .
+- Note: Production inspector URL: https://vercel.com/youcef-toumis-projects/bem-focus/8kJUM2Z5hgzW7tbi1w1X5aCJveCv .
+- Note: Verified the public production URL responds successfully (`200 OK`) through the Vercel fetch path.
+
+## Latest Run
+- Timestamp: 2026-04-03 17:35:00 -07:00
+- Mission: CLINE-KANBAN-STABILITY-FIX
+- Status: Fixed locally
+- Note: Switched investigation from the unrelated `vibe-kanban` app to the actual `cline/kanban` package after confirming the correct project URL.
+- Note: Verified the installed global package was one version behind (`kanban 0.1.57` vs latest `0.1.58`) and updated it globally with `npm install -g kanban@0.1.58`.
+- Note: Found the installed web shell at `C:\Users\toumi\AppData\Roaming\npm\node_modules\kanban\dist\web-ui\index.html` was registering a service worker for a local board, which can leave stale cached app shells after updates and make the UI appear frozen.
+- Note: Patched the installed web shell to unregister any existing service workers and clear browser caches on load instead of re-registering the service worker.
+- Note: Re-launched Kanban at `http://127.0.0.1:3484/new-project-2` and verified in-browser that `navigator.serviceWorker.getRegistrations()` returns `0`, cache storage is empty, and the board loads without console/page errors.
+- Note: Added permanent launch wrappers at `C:\Users\toumi\AppData\Local\Programs\Python\Python312\Scripts\kanban.cmd`, `C:\Users\toumi\AppData\Local\Programs\Python\Python312\Scripts\kanban.ps1`, and `C:\Users\toumi\AppData\Local\Programs\Python\Python312\Scripts\kanban-launch.ps1` so every future `kanban` launch reapplies the web-shell patch before delegating to the real global install.
+
+## Previous Run
+
+## Latest Run
+- Timestamp: 2026-04-03 17:05:00 -07:00
+- Mission: VIBE-KANBAN-STARTUP-TRIAGE
+- Status: Investigated
+- Note: Confirmed `C:\AI fixes` was empty and switched investigation to `C:\Users\toumi\Documents\New project 2`, which contains the active local project context.
+- Note: Identified the running Vibe Kanban desktop process at `C:\Users\toumi\.vibe-kanban\bin\v0.1.36-20260323174633\windows-x64\vibe-kanban.exe` serving UI on `http://127.0.0.1:62072`.
+- Note: Browser verification showed the app loads onboarding correctly; Sentry `429` responses are present but are quota noise and not the freeze cause.
+- Note: The unauthenticated path is partially broken: after choosing "continue without signing in", the app still requests `/api/auth/token`, receives `401 Unauthorized`, and logs `Failed to resolve first project destination: Error: Not authenticated`.
+- Note: The local SQLite state at `C:\Users\toumi\AppData\Roaming\bloop\vibe-kanban\data\db.v2.sqlite` remains empty for projects, workspaces, sessions, and tasks, so the earlier `vibe-kanban init --sync=mission_log.md` handoff did not create a synced board.
+- Note: The workspaces screen itself is not frozen; `Continue` stays disabled until a repository is added, which likely makes the app feel stuck when no repo has been selected and the auth error is visible in the background.
+
+## Latest Run
 - Timestamp: 2026-04-03 09:10:00 -07:00
 - Mission: NEVER-MISS-A-JOB-V1
 - Status: Complete
@@ -10,8 +52,6 @@
 - Note: Added a Postgres-ready schema and repository plus an in-memory seeded demo runtime so the product runs locally without external credentials while staying ready for real Twilio and Google Calendar wiring.
 - Note: Added automated coverage for missed-call recovery, abandoned-call dedupe, consent-safe form handling, STOP opt-out, human handoff routing, booking creation, and audit math.
 - Note: Verification passed locally in `never-miss-a-job` with `npm run typecheck`, `npm test`, and `npm run build`.
-
-## Previous Run
 
 ## Latest Run
 - Timestamp: 2026-04-03 09:08:00 -07:00
@@ -114,3 +154,15 @@
 - Note: Confirmed the local machine already has a signed-in standard Chrome profile available for import.
 - Note: Current blocker: Chrome is still running, so the profile files are locked and cannot be copied safely.
 - Note: Next action: user closes all Google Chrome windows, then runs npm run auth:google, followed by npm run open:gemini or npm run open:aistudio.
+## 2026-04-03 - cline/kanban freeze and non-reopen fix
+
+- Confirmed the main hang was the `kanban` Node server on `127.0.0.1:3484` accumulating `CloseWait` sockets after browser sessions closed.
+- Added a durable launcher patch in `C:\Users\toumi\AppData\Local\Programs\Python\Python312\Scripts\kanban-launch.ps1` that now:
+  - keeps the service-worker/cache cleanup patch in place
+  - runs a patched Kanban CLI copy with HTTP socket hardening (`keepAliveTimeout`, `headersTimeout`, `requestTimeout`, forced close on half-dead sockets)
+  - patches the web UI terminal client to auto-reconnect terminal websockets instead of leaving the agent pane dead
+- Switched local Kanban config from `selectedAgentId: "cline"` to `selectedAgentId: "codex"` in `C:\Users\toumi\.cline\kanban\config.json` so this machine uses a detected local agent instead of the built-in Cline provider with no API key.
+- Verified:
+  - repeated reopen of `http://127.0.0.1:3484/new-project-2` no longer stalls plain HTTP
+  - browser reopen no longer reproduces the old `Terminal stream closed. Close and reopen to reconnect.` state after opening `Kanban Agent`
+  - the server now stays at `Listen + Established/TimeWait` instead of piling up `CloseWait`

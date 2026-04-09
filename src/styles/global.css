@@ -625,9 +625,49 @@ textarea {
   font-size: 0.88rem;
 }
 
+.practice-context {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .exam-workbench .practice-card {
   display: grid;
   gap: 1rem;
+}
+
+.stair-grid,
+.programme-mini-stack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.stair-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.stair-card,
+.programme-mini-card,
+.transfer-note {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 252, 246, 0.9);
+}
+
+.stair-card strong,
+.programme-mini-card strong,
+.transfer-note strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.stair-card p,
+.programme-mini-card p,
+.transfer-note p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .exam-transcript {

@@ -2,6 +2,14 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
-    exclude: ["tests/e2e/**", "node_modules/**", "dist/**"],
+    include: ["tests/**/*.test.ts"],
+    exclude: [
+      "tests/e2e/**",
+      "node_modules/**",
+      "dist/**",
+      "never-miss-a-job/**",
+      ".playwright-cli/**",
+      "tmp/**",
+    ],
   },
 });
