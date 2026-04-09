@@ -1,6 +1,21 @@
 # Mission Log
 
 ## Latest Run
+- Timestamp: 2026-04-09 08:42:50 -07:00
+- Mission: BEM-FOCUS-OCR-REMOVAL-AND-TEACHING-FIRST-EXAM-FLOW
+- Status: Complete with preview and production deployed
+- Note: Loaded project context from `gemini.md`, `system_prompt.md`, and `env_manifest.json`.
+- Note: Removed the OCR exam reconstruction path from the product entirely by deleting `scripts/generate_exam_dossiers.py`, `src/data/examDossiers.generated.json`, `src/content/examDossiers.ts`, and `src/components/ExamPromptWorkbench.tsx`.
+- Note: Removed OCR-specific schema and content exports so the app no longer imports or renders dossier/transcript data anywhere.
+- Note: Rebuilt `src/routes/ExamPages.tsx` into a teaching-first exam flow with subject-aware start steps, a skill map for the paper, full programme blocks tied to the subject summary, and explicit exam moves/common traps instead of raw extracted text.
+- Note: Regenerated hosted archive metadata and offline downloads through the normal build pipeline, which updated `src/data/bemArchive.generated.json` and `public/downloads/offline-pack.zip`.
+- Note: Updated verification coverage so content tests now enforce programme depth and subject exam moves, while Playwright now checks that exam pages show the teaching-first coach surface and no OCR reconstruction heading.
+- Note: Verification passed locally with `npm run lint`, `npm test`, `npm run build`, and a final post-build `npm run test:e2e`.
+- Note: Pushed commit `0ef5b92` (`feat: remove OCR exam reconstruction`) to `https://github.com/youcef1512/bem-focus` on branch `codex/bem-focus`.
+- Note: Created a Vercel preview deployment at `https://bem-focus-a13jtpic4-youcef-toumis-projects.vercel.app` with inspector `https://vercel.com/youcef-toumis-projects/bem-focus/2LBQhbtD4m3T32HG3wqUeJUYmmJm`.
+- Note: Promoted the same change to production at `https://bem-focus-75hma35hp-youcef-toumis-projects.vercel.app`, and Vercel aliased it to `https://bem-focus.vercel.app` with inspector `https://vercel.com/youcef-toumis-projects/bem-focus/7hA63w7yXcjLZVnAdSSpQsdAizD8`.
+
+## Latest Run
 - Timestamp: 2026-04-09 08:18:00 -07:00
 - Mission: BEM-FOCUS-PEDAGOGIC-LANGUAGE-RECONSTRUCTION-AND-DYNAMIC-RECALL
 - Status: Complete with production deployed
