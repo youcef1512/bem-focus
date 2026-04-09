@@ -38,3 +38,17 @@ test("hosted pdf iframe is present on exam page", async ({ page }) => {
   await page.goto("/past-exams/math/2025");
   await expect(page.locator('iframe[title="paper-math-2025"]')).toBeVisible();
 });
+
+test("history recall lab can generate a new set", async ({ page }) => {
+  await page.goto("/history-timeline");
+  const firstItem = await page.getByTestId("reorder-item").first().innerText();
+  await page.getByTestId("practice-refresh").click();
+  await expect(page.getByTestId("reorder-item").first()).not.toHaveText(firstItem);
+});
+
+test("triangle visual updates the hypotenuse interactively", async ({ page }) => {
+  await page.goto("/lessons/math-geometry");
+  const before = await page.getByTestId("triangle-hypotenuse").innerText();
+  await page.getByTestId("triangle-base-slider").fill("9");
+  await expect(page.getByTestId("triangle-hypotenuse")).not.toHaveText(before);
+});

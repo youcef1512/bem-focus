@@ -1,6 +1,22 @@
 # Mission Log
 
 ## Latest Run
+- Timestamp: 2026-04-09 08:18:00 -07:00
+- Mission: BEM-FOCUS-PEDAGOGIC-LANGUAGE-RECONSTRUCTION-AND-DYNAMIC-RECALL
+- Status: Complete with production deployed
+- Note: Rebuilt the French and English dossier classifier in `scripts/generate_exam_dossiers.py` so year-by-year OCR prompts no longer collapse into generic `Compétence de français` / `English skill` tags for the reviewed 2025 papers.
+- Note: Added Latin-side section recovery and prompt-specific classification for `Compréhension`, `Lexique`, `Langue et grammaire`, `Production écrite`, `Reading`, `Vocabulary`, `Grammar`, and `Writing`, with passage/noise filtering to stop source lines and OCR garbage from appearing as fake questions.
+- Note: Regenerated `src/data/examDossiers.generated.json`; representative result for `french-2025` is now split into `Compréhension`, `Lexique`, `Langue et grammaire`, and `Production écrite`, while `english-2025` now exposes `Reading`, `Vocabulary`, `Grammar`, and `Writing`.
+- Note: Deepened `ExamPromptWorkbench` so language questions get skill-specific stair scaffolds instead of one generic French/English block.
+- Note: Added `src/features/practice/generators.ts` and upgraded `PracticeDeck` with generator-driven rounds plus a visible `مجموعة جديدة` control, so history recall sets now change across attempts instead of repeating the same fixed order.
+- Note: Wired dynamic recall generation into `HistoryTimelinePage` and history lessons through `practiceFactoryForLesson`, using the full local `historyTimeline` pool rather than a tiny static subset.
+- Note: Replaced the static triangle SVG in `src/components/Visuals.tsx` with a live draggable + slider-driven geometry visual that updates side lengths and the hypotenuse immediately; also made the line-function visual interactive with slope/intercept controls.
+- Note: Visual verification screenshots captured at `C:\Users\toumi\Documents\New project 2\output\screenshots\french-2025-workbench-focus.png`, `C:\Users\toumi\Documents\New project 2\output\screenshots\history-recall-focus.png`, and `C:\Users\toumi\Documents\New project 2\output\screenshots\triangle-interactive.png`.
+- Note: Verification passed locally with `npm run lint`, `npm test`, `npm run test:e2e`, and `npm run build`.
+- Note: Created and verified a fresh production deployment via CLI: https://bem-focus-194mofhiz-youcef-toumis-projects.vercel.app .
+- Note: Production alias `https://bem-focus.vercel.app` returned `200 OK` after deployment; inspector URL is https://vercel.com/youcef-toumis-projects/bem-focus/DCszYS4ZeTcJsD2Y5tV819KhCJ27 .
+
+## Latest Run
 - Timestamp: 2026-04-09 07:13:00 -07:00
 - Mission: BEM-FOCUS-YEAR-BY-YEAR-EXAM-RECONSTRUCTION-DEEPENING
 - Status: Complete with preview deployed

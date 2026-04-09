@@ -53,6 +53,11 @@ LATIN_SECTION_PATTERNS = (
     "compréhension",
     "production",
     "langue",
+    "language",
+    "lexique",
+    "vocabulaire",
+    "conjugaison",
+    "mastery",
     "grammar",
     "writing",
 )
@@ -80,6 +85,15 @@ HEADER_NOISE_PATTERNS = (
     "durée",
     "name:",
     "page ",
+)
+
+LATIN_PASSAGE_MARKERS = (
+    "texte:",
+    "text:",
+    "lis le texte",
+    "read the text",
+    "adapted from",
+    "adupted from",
 )
 
 TOPIC_RULES: dict[str, list[tuple[str, str]]] = {
@@ -203,6 +217,23 @@ def is_latin_section(line: str) -> bool:
     return any(pattern in lowered for pattern in LATIN_SECTION_PATTERNS)
 
 
+def is_latin_major_section(line: str) -> bool:
+    lowered = line.lower()
+    return any(
+        pattern in lowered
+        for pattern in (
+            "reading comprehension",
+            "compréhension",
+            "production",
+            "langue",
+            "language",
+            "grammar",
+            "writing",
+            "mastery of language",
+        )
+    )
+
+
 def is_arabic_heading(line: str) -> bool:
     return any(token in line for token in ("الجزء", "الوضعية", "النشاط", "التعليمة", "السند"))
 
@@ -232,6 +263,252 @@ def normalize_arabic_section_title(line: str) -> str:
     cleaned = clean_line(line)
     cleaned = re.sub(r"\s*\([^)]*نقطة[^)]*\)\s*$", "", cleaned)
     return cleaned.strip(" :-")
+
+
+def normalize_latin_section_title(line: str) -> str:
+    cleaned = clean_line(line)
+    cleaned = re.sub(r"\s*\([^)]*(?:pt|pts|point|points)[^)]*\)\s*$", "", cleaned, flags=re.IGNORECASE)
+    return cleaned.strip(" :-")
+
+
+def is_latin_passage_line(line: str) -> bool:
+    lowered = clean_line(line).lower()
+    if any(marker in lowered for marker in LATIN_PASSAGE_MARKERS):
+        return True
+
+    return len(lowered) > 280 and not re.search(
+        r"choose|write|match|complete|comp|recopie|réponds|reponds|pourquoi|classe|rédige|redige|true|false|according to|main idea",
+        lowered,
+        re.IGNORECASE,
+    )
+
+
+def infer_french_skill(prompt: str, section_title: str = "") -> str | None:
+    lowered = f"{section_title} {prompt}".lower()
+
+    if any(
+        token in lowered
+        for token in (
+            "production écrite",
+            "production ecrite",
+            "rédige",
+            "redige",
+            "écris un texte",
+            "ecris un texte",
+            "écris un paragraphe",
+            "ecris un paragraphe",
+            "texte d’une dizaine",
+            "texte d'une dizaine",
+            "convaincre",
+            "raconte",
+            "racontez",
+        )
+    ):
+        return "Production écrite"
+
+    if any(
+        token in lowered
+        for token in (
+            "langue",
+            "grammaire",
+            "complète",
+            "complete",
+            "réécris",
+            "reecris",
+            "récris",
+            "transforme",
+            "relie",
+            "mets",
+            "mettez",
+            "remplace",
+            "pronom",
+            "verbe",
+            "nom",
+            "adjectif",
+            "singulier",
+            "pluriel",
+            "feminin",
+            "féminin",
+            "masculin",
+            "commençant",
+            "commencant",
+            "accord",
+        )
+    ):
+        return "Langue et grammaire"
+
+    if any(
+        token in lowered
+        for token in (
+            "lexique",
+            "vocabulaire",
+            "veut dire",
+            "sens du mot",
+            "sens de l",
+            "mot souligné",
+            "mot souligne",
+            "expression soulignée",
+            "expression soulignee",
+            "synonyme",
+            "contraire",
+            "définition",
+            "definition",
+        )
+    ):
+        return "Lexique"
+
+    if any(
+        token in lowered
+        for token in (
+            "compréhension",
+            "comprehension",
+            "réponds",
+            "reponds",
+            "vrai",
+            "faux",
+            "pourquoi",
+            "d'après",
+            "dapres",
+            "selon l'auteur",
+            "selon le texte",
+            "thème",
+            "theme",
+            "idée",
+            "idee",
+            "classe",
+            "quel comportement",
+            "quelle est",
+            "quelle sont",
+            "quels sont",
+            "a quel nom",
+        )
+    ):
+        return "Compréhension"
+
+    if re.search(r"^(pourquoi|comment|que|quel|quelle|quels|quelles|où|ou|qui|combien|quand|a quel)\b", prompt.strip().lower()):
+        return "Compréhension"
+
+    if ("«" in prompt or '"' in prompt or "'" in prompt) and "pt" in lowered:
+        return "Langue et grammaire"
+
+    return None
+
+
+def infer_english_skill(prompt: str, section_title: str = "") -> str | None:
+    lowered = f"{section_title} {prompt}".lower()
+
+    if re.match(r"^\s*[a-z][a-z'\-]+\s+[a-d¢][\-\.)]", prompt.strip(), re.IGNORECASE):
+        return "Vocabulary"
+
+    if any(
+        token in lowered
+        for token in (
+            "reading comprehension",
+            "read the text",
+            "according to the text",
+            "the text is about",
+            "refer to",
+            "main idea",
+        )
+    ):
+        return "Reading"
+
+    if any(
+        token in lowered
+        for token in (
+            "write",
+            "paragraph",
+            "production",
+            "essay",
+            "letter",
+            "email",
+            "convince",
+            "topic sentence",
+            "situation of integration",
+            "writing",
+        )
+    ):
+        return "Writing"
+
+    if any(
+        token in lowered
+        for token in (
+            "grammar",
+            "mastery of language",
+            "choose (a",
+            "following sentences",
+            "complete the following sentences",
+            "put the verbs",
+            "rewrite",
+            "join",
+            "combine",
+            "tense",
+            "modal",
+            "pronoun",
+            "plural",
+            "singular",
+            "correct form",
+            "fill in",
+        )
+    ):
+        return "Grammar"
+
+    if any(
+        token in lowered
+        for token in (
+            "vocabulary",
+            "definition",
+            "match each word",
+            "meaning",
+            "synonym",
+            "opposite",
+            "word means",
+        )
+    ):
+        return "Vocabulary"
+
+    if any(
+        token in lowered
+        for token in (
+            "read the text",
+            "reading",
+            "true",
+            "false",
+            "according to the text",
+            "answer the following questions",
+            "main idea",
+            "topic",
+            "text says",
+            "who",
+            "where",
+            "why",
+        )
+    ):
+        return "Reading"
+
+    return None
+
+
+def infer_latin_skill(subject_id: str, prompt: str, section_title: str = "") -> str | None:
+    if subject_id in FRENCH_SUBJECTS:
+        return infer_french_skill(prompt, section_title)
+    if subject_id in ENGLISH_SUBJECTS:
+        return infer_english_skill(prompt, section_title)
+    return None
+
+
+def canonical_latin_section_title(subject_id: str, section_title: str, prompt: str) -> str:
+    explicit_skill = infer_latin_skill(subject_id, "", section_title)
+    prompt_skill = infer_latin_skill(subject_id, prompt, "")
+    if explicit_skill and prompt_skill and explicit_skill != prompt_skill:
+        return prompt_skill
+    if explicit_skill:
+        return explicit_skill
+
+    cleaned = normalize_latin_section_title(section_title)
+    if cleaned == "Original page":
+        return prompt_skill or cleaned
+    return cleaned
 
 
 def parse_arabic_block_heading(line: str) -> tuple[str, str] | None:
@@ -285,7 +562,26 @@ def infer_kind(prompt: str, options: list[str]) -> str:
     return "response"
 
 
-def infer_topics(subject_id: str, prompt: str) -> tuple[str, list[str]]:
+def infer_topics(subject_id: str, prompt: str, section_title: str = "") -> tuple[str, list[str]]:
+    prompt_skill = infer_latin_skill(subject_id, prompt, "")
+    section_skill = infer_latin_skill(subject_id, "", section_title)
+    latin_skill = prompt_skill or section_skill or infer_latin_skill(subject_id, prompt, section_title)
+    if latin_skill:
+        linked_topics = [latin_skill]
+        if subject_id in FRENCH_SUBJECTS and latin_skill == "Compréhension":
+            linked_topics.append("Compréhension de l’écrit")
+        if subject_id in FRENCH_SUBJECTS and latin_skill == "Langue et grammaire":
+            linked_topics.append("Transformation de phrase")
+        if subject_id in FRENCH_SUBJECTS and latin_skill == "Production écrite":
+            linked_topics.append("Argumentation")
+        if subject_id in ENGLISH_SUBJECTS and latin_skill == "Reading":
+            linked_topics.append("Reading comprehension")
+        if subject_id in ENGLISH_SUBJECTS and latin_skill == "Grammar":
+            linked_topics.append("Sentence transformation")
+        if subject_id in ENGLISH_SUBJECTS and latin_skill == "Writing":
+            linked_topics.append("Paragraph writing")
+        return latin_skill, linked_topics[:3]
+
     matches = [
         label
         for pattern, label in TOPIC_RULES.get(subject_id, [])
@@ -309,6 +605,24 @@ def build_answer_frame(subject_id: str, kind: str, skill_tag: str) -> list[str]:
             "التعويض أو الخطوات:",
             "النتيجة النهائية:",
         ]
+    if subject_id == "french":
+        if skill_tag == "Compréhension":
+            return ["Mot-clé de la question:", "Phrase ou idée du texte:", "Réponse courte et correcte:"]
+        if skill_tag == "Lexique":
+            return ["Mot ciblé:", "Indice autour du mot:", "Sens ou remplacement proposé:"]
+        if skill_tag == "Langue et grammaire":
+            return ["Phrase de départ:", "Transformation demandée:", "Phrase réécrite:"]
+        if skill_tag == "Production écrite":
+            return ["Situation:", "Argument 1:", "Argument 2:", "Argument 3:", "Conclusion courte:"]
+    if subject_id == "english":
+        if skill_tag == "Reading":
+            return ["Question keyword:", "Useful line from the text:", "Short clean answer:"]
+        if skill_tag == "Vocabulary":
+            return ["Target word:", "Context clue:", "Meaning or match:"]
+        if skill_tag == "Grammar":
+            return ["Original sentence:", "Rule to apply:", "Rewritten sentence:"]
+        if skill_tag == "Writing":
+            return ["Opening:", "Main point:", "Support:", "Closing:"]
     if subject_id in {"historygeo", "civics", "islamic"}:
         return [
             "أحدد المفهوم أو الحدث:",
@@ -322,7 +636,7 @@ def build_answer_frame(subject_id: str, kind: str, skill_tag: str) -> list[str]:
     return ["أفهم المطلوب:", "أستخرج الدليل أو القاعدة:", "أكتب الجواب المختصر:"]
 
 
-def build_pitfalls(subject_id: str, kind: str) -> list[str]:
+def build_pitfalls(subject_id: str, kind: str, skill_tag: str = "") -> list[str]:
     if subject_id == "math" or kind == "calculation":
         return [
             "القفز إلى الحساب قبل كتابة المعطيات والقانون.",
@@ -339,6 +653,21 @@ def build_pitfalls(subject_id: str, kind: str) -> list[str]:
             "الخلط بين فهم النص والقواعد أو ترك التعبير دون تنظيم.",
         ]
     if subject_id in {"french", "english"}:
+        if skill_tag in {"Langue et grammaire", "Grammar"}:
+            return [
+                "تغيير أكثر من الجزء المطلوب في الجملة.",
+                "نسيان المطابقة بين الفاعل والفعل أو بين المفرد والجمع.",
+            ]
+        if skill_tag in {"Lexique", "Vocabulary"}:
+            return [
+                "اختيار معنى للكلمة دون النظر إلى سياق الجملة.",
+                "الخلط بين معنى الكلمة وتعريف عام بعيد عن النص.",
+            ]
+        if skill_tag in {"Production écrite", "Writing"}:
+            return [
+                "القفز إلى الكتابة دون تخطيط 3 أفكار قصيرة.",
+                "نص طويل لكنه بدون موقف واضح أو حجج مرتبة.",
+            ]
         return [
             "جملة طويلة ومكسرة بدل جملة قصيرة صحيحة.",
             "الإجابة خارج المطلوب أو دون كلمة مفتاحية من النص.",
@@ -353,10 +682,155 @@ def build_pedagogy(
     prompt: str,
     kind: str,
     subject_id: str,
+    section_title: str,
 ) -> tuple[str, list[str], list[str], list[str], list[str], str, list[str]]:
-    skill_tag, linked_topics = infer_topics(subject_id, prompt)
+    skill_tag, linked_topics = infer_topics(subject_id, prompt, section_title)
     answer_frame = build_answer_frame(subject_id, kind, skill_tag)
-    pitfalls = build_pitfalls(subject_id, kind)
+    pitfalls = build_pitfalls(subject_id, kind, skill_tag)
+
+    if subject_id == "french" and skill_tag == "Compréhension":
+        return (
+            "اقري السؤال أولاً، ثم حددي الكلمة المفتاحية، ثم ارجعي فقط إلى السطر أو الفقرة الأقرب لها.",
+            [
+                "ضعي خطاً تحت الفعل المطلوب: pourquoi / quel / selon le texte ...",
+                "ابحثي في النص عن الكلمة المفتاحية أو مرادفها.",
+                "أجيبي بجملة فرنسية قصيرة فيها جزء من معجم النص.",
+            ],
+            [
+                "هل جوابك مأخوذ من فكرة النص لا من حدسك؟",
+                "هل كتبته في جملة قصيرة ومفهومة؟",
+            ],
+            answer_frame,
+            pitfalls,
+            skill_tag,
+            linked_topics,
+        )
+
+    if subject_id == "french" and skill_tag == "Lexique":
+        return (
+            "ما تفسريش الكلمة وحدها. شوفي الجملة كاملة ثم اختاري المعنى أو البديل الأقرب للسياق.",
+            [
+                "حددي الكلمة أو العبارة المطلوبة بالضبط.",
+                "اقرئي ما قبلها وما بعدها لاستخراج المعنى.",
+                "اختاري مرادفًا أو تعريفًا قصيرًا يبقى منسجمًا مع النص.",
+            ],
+            [
+                "هل المعنى الذي اخترته يناسب الجملة كاملة؟",
+                "هل تجنبت شرحًا عامًا بعيدًا عن السند؟",
+            ],
+            answer_frame,
+            pitfalls,
+            skill_tag,
+            linked_topics,
+        )
+
+    if subject_id == "french" and skill_tag == "Langue et grammaire":
+        return (
+            "في هذا النوع لا تغيري الجملة كلها. حددي فقط العنصر الذي سيتحول: ضمير، عدد، زمن، أو تركيب.",
+            [
+                "انسخي الجملة أو الجزء المفيد منها أولاً.",
+                "حددي القاعدة المطلوبة: accord, transformation, pronom, verbe ...",
+                "أعيدي كتابة الجملة ثم افحصي المطابقة في النهاية.",
+            ],
+            [
+                "هل غيرت فقط ما طُلب دون زيادة؟",
+                "هل الفعل والضمير والعدد ما زالوا منسجمين؟",
+            ],
+            answer_frame,
+            pitfalls,
+            skill_tag,
+            linked_topics,
+        )
+
+    if subject_id == "french" and skill_tag == "Production écrite":
+        return (
+            "قبل الكتابة، حضري موقفك وثلاث حجج قصيرة. بعد ذلك فقط ابدئي صياغة الفقرة.",
+            [
+                "حددي لمن تكتبين وما الرسالة التي تريدين إيصالها.",
+                "اكتبي 3 arguments courts قبل الجمل الكاملة.",
+                "ابني الفقرة: phrase d’ouverture ثم arguments ثم conclusion courte.",
+            ],
+            [
+                "هل النص فيه 3 حجج واضحة لا مجرد تكرار؟",
+                "هل الربط بين الجمل واضح وبسيط؟",
+            ],
+            answer_frame,
+            pitfalls,
+            skill_tag,
+            linked_topics,
+        )
+
+    if subject_id == "english" and skill_tag == "Reading":
+        return (
+            "Read the question first, then go back to the exact part of the text instead of translating everything.",
+            [
+                "Underline the keyword in the question.",
+                "Find the line or idea that answers it.",
+                "Write one short English sentence, not a broken paragraph.",
+            ],
+            [
+                "Does your answer come from the text?",
+                "Is the sentence short and correct?",
+            ],
+            answer_frame,
+            pitfalls,
+            skill_tag,
+            linked_topics,
+        )
+
+    if subject_id == "english" and skill_tag == "Vocabulary":
+        return (
+            "Use the sentence around the word as your clue. Meaning in context is safer than isolated guessing.",
+            [
+                "Locate the target word.",
+                "Read the whole sentence around it.",
+                "Choose the matching meaning, synonym, or definition.",
+            ],
+            [
+                "Does the meaning fit the sentence?",
+                "Did you avoid a random dictionary-like answer?",
+            ],
+            answer_frame,
+            pitfalls,
+            skill_tag,
+            linked_topics,
+        )
+
+    if subject_id == "english" and skill_tag == "Grammar":
+        return (
+            "First ask: what exactly must change in the sentence? tense, pronoun, plural, or connector?",
+            [
+                "Copy the original sentence idea.",
+                "Apply one grammar rule only.",
+                "Read the new sentence again for agreement and word order.",
+            ],
+            [
+                "Did you change only what was needed?",
+                "Is the new sentence grammatically consistent?",
+            ],
+            answer_frame,
+            pitfalls,
+            skill_tag,
+            linked_topics,
+        )
+
+    if subject_id == "english" and skill_tag == "Writing":
+        return (
+            "Plan the paragraph before writing: opening, clear idea, one support, then a short closing.",
+            [
+                "Decide your message first.",
+                "List 2 or 3 simple ideas before writing full sentences.",
+                "Turn them into a short clean paragraph.",
+            ],
+            [
+                "Is your paragraph clear and on topic?",
+                "Did you use simple correct sentences instead of risky long ones?",
+            ],
+            answer_frame,
+            pitfalls,
+            skill_tag,
+            linked_topics,
+        )
 
     if kind == "multiple-choice":
         return (
@@ -526,17 +1000,35 @@ def build_prompt_card(
     normalized_prompt = clean_line(prompt_text)
     if len(normalized_prompt) < 6:
         return None
+    if subject_id in FRENCH_SUBJECTS or subject_id in ENGLISH_SUBJECTS:
+        if is_latin_passage_line(normalized_prompt):
+            return None
+        inferred_skill = infer_latin_skill(subject_id, normalized_prompt, section_title)
+        if section_title == "Original page" and not inferred_skill and len(normalized_prompt.split()) < 10:
+            return None
+        if not inferred_skill and len(normalized_prompt.split()) < 12 and not re.search(
+            r"pt|pts|point|points|:|\?|true|false|vrai|faux|choose|write|match|recopie|réponds|reponds|pourquoi",
+            normalized_prompt,
+            re.IGNORECASE,
+        ):
+            return None
     normalized_options = [clean_line(option) for option in (options or []) if clean_line(option)]
     kind = infer_kind(normalized_prompt, normalized_options)
+    effective_section_title = (
+        canonical_latin_section_title(subject_id, section_title, normalized_prompt)
+        if subject_id in FRENCH_SUBJECTS or subject_id in ENGLISH_SUBJECTS
+        else section_title
+    )
     recall, steps, check, answer_frame, pitfalls, skill_tag, linked_topics = build_pedagogy(
         normalized_prompt,
         kind,
         subject_id,
+        effective_section_title,
     )
     return PromptCard(
         prompt=normalized_prompt,
         page_number=page_number,
-        section_title=section_title,
+        section_title=effective_section_title,
         kind=kind,
         skill_tag=skill_tag,
         linked_topics=linked_topics,
@@ -553,12 +1045,20 @@ def build_prompt_card(
 def parse_latin_page(subject_id: str, lines: list[str], page_number: int) -> list[PromptCard]:
     prompts: list[PromptCard] = []
     section_title = "Original page"
+    major_section_title = "Original page"
     index = 0
 
     while index < len(lines):
         line = lines[index]
         if is_latin_section(line):
-            section_title = line
+            normalized_section = normalize_latin_section_title(line)
+            if is_latin_major_section(line):
+                major_section_title = normalized_section
+                section_title = normalized_section
+            elif normalized_section.lower().startswith(("activity", "question")) and major_section_title != "Original page":
+                section_title = f"{major_section_title} | {normalized_section}"
+            else:
+                section_title = normalized_section
             index += 1
             continue
 
@@ -592,7 +1092,14 @@ def parse_latin_page(subject_id: str, lines: list[str], page_number: int) -> lis
             index = cursor
             continue
 
-        if any(token in line.lower() for token in ("write", "complete", "match", "choose", "rédige", "recopie", "fill")):
+        if any(token in line.lower() for token in ("write", "complete", "match", "choose", "rédige", "recopie", "fill")) or (
+            section_title != "Original page"
+            and not is_option_line(line)
+            and (
+                re.search(r"\.{2,}|:", line)
+                or re.match(r"^(?:what|why|how|which|who|where|when|quel|quelle|quels|quelles|pourquoi|réponds|reponds)\b", line, re.IGNORECASE)
+            )
+        ):
             card = build_prompt_card(subject_id, line, page_number, section_title, [line])
             if card:
                 prompts.append(card)

@@ -10,6 +10,7 @@ import {
 } from "../content";
 import { PrintActions, SectionHeading, Surface } from "../components/AppChrome";
 import { PracticeDeck } from "../components/PracticeDeck";
+import { buildHistoryStoryRecallSet } from "../features/practice/generators";
 
 export function DailyPlanPage() {
   const grouped = {
@@ -61,29 +62,6 @@ export function DailyPlanPage() {
 }
 
 export function HistoryTimelinePage() {
-  const timelineQuestions = [
-    {
-      id: "timeline-order",
-      type: "reorder" as const,
-      prompt: "رتبي هذه المحطات المفصلية:",
-      items: [
-        "الاستقلال",
-        "مجازر 8 ماي 1945",
-        "بداية الاحتلال",
-        "اندلاع الثورة التحريرية",
-      ],
-      correctOrder: [
-        "بداية الاحتلال",
-        "مجازر 8 ماي 1945",
-        "اندلاع الثورة التحريرية",
-        "الاستقلال",
-      ],
-      hints: ["1830 ثم 1945 ثم 1954 ثم 1962."],
-      explanation: "هذا الترتيب يعطيك العمود الفقري للقصة التاريخية.",
-      sourceRefs: ["BEM History/Geo archive 2016-2025"],
-    },
-  ];
-
   return (
     <>
       <SectionHeading
@@ -120,7 +98,11 @@ export function HistoryTimelinePage() {
         </div>
       </Surface>
       <Surface>
-        <PracticeDeck questions={timelineQuestions} title="ثبتي التسلسل الزمني" />
+        <PracticeDeck
+          questionFactory={buildHistoryStoryRecallSet}
+          questions={buildHistoryStoryRecallSet(0)}
+          title="ثبتي التسلسل الزمني"
+        />
       </Surface>
     </>
   );

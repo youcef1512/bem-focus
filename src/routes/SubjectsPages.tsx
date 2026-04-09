@@ -4,6 +4,7 @@ import { lessonById, summaryById, subjectById, subjects, examsForSubject } from 
 import { PrintActions, SectionHeading, Surface } from "../components/AppChrome";
 import { PracticeDeck } from "../components/PracticeDeck";
 import { FunctionPlot, TimelineStrip, TriangleSketch } from "../components/Visuals";
+import { practiceFactoryForLesson } from "../features/practice/generators";
 
 function visualFor(lessonId: string) {
   if (lessonId === "math-functions") {
@@ -181,6 +182,8 @@ export function LessonPage() {
     return <Navigate replace to="/subjects" />;
   }
 
+  const questionFactory = practiceFactoryForLesson(lesson.id);
+
   return (
     <>
       <Surface className="lesson-hero">
@@ -235,7 +238,11 @@ export function LessonPage() {
       {visualFor(lesson.id) ? <Surface>{visualFor(lesson.id)}</Surface> : null}
 
       <Surface>
-        <PracticeDeck questions={lesson.practice} title={`تطبيق: ${lesson.shortTitle}`} />
+        <PracticeDeck
+          questionFactory={questionFactory}
+          questions={lesson.practice}
+          title={`تطبيق: ${lesson.shortTitle}`}
+        />
       </Surface>
     </>
   );
@@ -249,6 +256,8 @@ export function PracticePage() {
     return <Navigate replace to="/subjects" />;
   }
 
+  const questionFactory = practiceFactoryForLesson(lesson.id);
+
   return (
     <>
       <SectionHeading
@@ -257,7 +266,7 @@ export function PracticePage() {
         title={`تدريب مستقل: ${lesson.title}`}
       />
       <Surface>
-        <PracticeDeck questions={lesson.practice} title={lesson.title} />
+        <PracticeDeck questionFactory={questionFactory} questions={lesson.practice} title={lesson.title} />
       </Surface>
       <Surface>
         <div className="hero-actions">

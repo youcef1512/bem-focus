@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { buildInteractiveExam, examSources, lessons, studyPlan, subjects } from "../src/content";
+import { buildInteractiveExam, examDossierFor, examSources, lessons, studyPlan, subjects } from "../src/content";
 import { buildMathExamSections } from "../src/features/math/remix";
+import { buildHistoryStoryRecallSet } from "../src/features/practice/generators";
 import { isQuestionCorrect } from "../src/features/practice/evaluation";
 
 describe("study plan", () => {
@@ -40,6 +41,23 @@ describe("content depth", () => {
       expect(exam?.sections.flatMap((section) => section.questions).length).toBeGreaterThanOrEqual(6);
     }
   });
+
+  it("classifies french and english dossier prompts with concrete skill tags", () => {
+    const french = examDossierFor("french", 2025);
+    const english = examDossierFor("english", 2025);
+    expect(french).toBeDefined();
+    expect(english).toBeDefined();
+
+    const frenchTags = new Set(french?.prompts.map((prompt) => prompt.skillTag));
+    const englishTags = new Set(english?.prompts.map((prompt) => prompt.skillTag));
+
+    expect(frenchTags.has("Compétence de français")).toBe(false);
+    expect(englishTags.has("English skill")).toBe(false);
+    expect(frenchTags.has("Compréhension")).toBe(true);
+    expect(frenchTags.has("Langue et grammaire") || frenchTags.has("Lexique")).toBe(true);
+    expect(englishTags.has("Reading")).toBe(true);
+    expect(englishTags.has("Grammar") || englishTags.has("Vocabulary")).toBe(true);
+  });
 });
 
 describe("math remix", () => {
@@ -57,5 +75,13 @@ describe("practice evaluation", () => {
       throw new Error("Unexpected question type");
     }
     expect(isQuestionCorrect(question, String(question.answer))).toBe(true);
+  });
+
+  it("generates a different history recall set for a new round", () => {
+    const first = buildHistoryStoryRecallSet(0);
+    const second = buildHistoryStoryRecallSet(1);
+    expect(first).toHaveLength(4);
+    expect(second).toHaveLength(4);
+    expect(first[0]).not.toEqual(second[0]);
   });
 });

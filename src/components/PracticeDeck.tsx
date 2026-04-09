@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { isQuestionCorrect } from "../features/practice/evaluation";
 import type { PracticeQuestion } from "../content/schema";
 
 type PracticeDeckProps = {
   title: string;
   questions: PracticeQuestion[];
+  questionFactory?: (round: number) => PracticeQuestion[];
 };
 
 function initialAnswer(question: PracticeQuestion): string | string[] {
@@ -19,12 +20,40 @@ function initialAnswer(question: PracticeQuestion): string | string[] {
   return "";
 }
 
-export function PracticeDeck({ title, questions }: PracticeDeckProps) {
+export function PracticeDeck({ title, questions, questionFactory }: PracticeDeckProps) {
+  const [round, setRound] = useState(0);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [hintCount, setHintCount] = useState<Record<string, number>>({});
-  const current = questions[index];
+  const activeQuestions = useMemo(() => {
+    const generated = questionFactory?.(round);
+    if (generated?.length) {
+      return generated;
+    }
+    return questions;
+  }, [questionFactory, questions, round]);
+
+  useEffect(() => {
+    setIndex(0);
+    setAnswers({});
+    setChecked({});
+    setHintCount({});
+  }, [round]);
+
+  useEffect(() => {
+    setRound(0);
+    setIndex(0);
+    setAnswers({});
+    setChecked({});
+    setHintCount({});
+  }, [questionFactory, questions, title]);
+
+  if (!activeQuestions.length) {
+    return null;
+  }
+
+  const current = activeQuestions[index] ?? activeQuestions[0];
   const currentAnswer = answers[current.id] ?? initialAnswer(current);
   const isChecked = checked[current.id] ?? false;
   const isCorrect = isChecked ? isQuestionCorrect(current, currentAnswer) : null;
@@ -59,7 +88,7 @@ export function PracticeDeck({ title, questions }: PracticeDeckProps) {
     );
   }
 
-  const score = questions.filter((question) => {
+  const score = activeQuestions.filter((question) => {
     const answer = answers[question.id] ?? initialAnswer(question);
     return checked[question.id] && isQuestionCorrect(question, answer);
   }).length;
@@ -71,18 +100,30 @@ export function PracticeDeck({ title, questions }: PracticeDeckProps) {
           <p className="eyebrow">Recall Lab</p>
           <h3>{title}</h3>
         </div>
-        <p className="practice-score">
-          {score} / {questions.length}
-        </p>
+        <div className="practice-header-actions">
+          {questionFactory ? (
+            <button
+              className="action-button action-button--ghost"
+              data-testid="practice-refresh"
+              onClick={() => setRound((value) => value + 1)}
+              type="button"
+            >
+              مجموعة جديدة
+            </button>
+          ) : null}
+          <p className="practice-score">
+            {score} / {activeQuestions.length}
+          </p>
+        </div>
       </div>
 
       <div className="practice-progress">
-        <span style={{ width: `${((index + 1) / questions.length) * 100}%` }} />
+        <span style={{ width: `${((index + 1) / activeQuestions.length) * 100}%` }} />
       </div>
 
       <div className="practice-card">
         <p className="question-label">
-          سؤال {index + 1} / {questions.length}
+          سؤال {index + 1} / {activeQuestions.length}
         </p>
         <h4>{current.prompt}</h4>
         {current.context ? <p className="practice-context">{current.context}</p> : null}
@@ -119,7 +160,7 @@ export function PracticeDeck({ title, questions }: PracticeDeckProps) {
           <div className="reorder-list">
             {(Array.isArray(currentAnswer) ? currentAnswer : current.items).map(
               (item, itemIndex) => (
-                <div key={`${item}-${itemIndex}`} className="reorder-item">
+                <div key={`${item}-${itemIndex}`} className="reorder-item" data-testid="reorder-item">
                   <span>{item}</span>
                   <div className="reorder-controls">
                     <button onClick={() => moveItem(-1, itemIndex)} type="button">
@@ -210,8 +251,8 @@ export function PracticeDeck({ title, questions }: PracticeDeckProps) {
         </button>
         <button
           className="action-button"
-          disabled={index === questions.length - 1}
-          onClick={() => setIndex((value) => Math.min(questions.length - 1, value + 1))}
+          disabled={index === activeQuestions.length - 1}
+          onClick={() => setIndex((value) => Math.min(activeQuestions.length - 1, value + 1))}
           type="button"
         >
           التالي
