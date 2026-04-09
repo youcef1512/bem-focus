@@ -14,7 +14,6 @@
     "test:e2e": "playwright test",
     "ingest:bem": "tsx scripts/ingest-bem.ts",
     "hydrate:exams": "tsx scripts/hydrate-exams.ts",
-    "generate:exam-dossiers": "python scripts/generate_exam_dossiers.py",
     "generate:downloads": "tsx scripts/generate-downloads.ts",
     "auth:google": "node ./scripts/import-google-session.mjs",
     "open:gemini": "node ./scripts/open-google-app.mjs gemini",

@@ -145,57 +145,6 @@ export type ExamSection = {
   questions: PracticeQuestion[];
 };
 
-export type ExamPromptKind =
-  | "multiple-choice"
-  | "ordering"
-  | "calculation"
-  | "writing"
-  | "analysis"
-  | "response";
-
-export type ExamPromptCard = {
-  id: string;
-  pageNumber: number;
-  sectionTitle: string;
-  prompt: string;
-  kind: ExamPromptKind;
-  skillTag: string;
-  linkedTopics: string[];
-  options: string[];
-  originalLines: string[];
-  recallFirst: string;
-  startSteps: string[];
-  answerFrame: string[];
-  pitfalls: string[];
-  selfCheck: string[];
-};
-
-export type ExamDossierPage = {
-  pageNumber: number;
-  headline: string[];
-  transcript: string[];
-  promptIds: string[];
-};
-
-export type ExamDossierSection = {
-  title: string;
-  promptIds: string[];
-  pageNumbers: number[];
-};
-
-export type ExamDossier = {
-  id: string;
-  subjectId: SubjectId;
-  year: number;
-  title: string;
-  sourcePaperPath: string;
-  pageCount: number;
-  ocrLanguage: string;
-  sections: ExamDossierSection[];
-  pages: ExamDossierPage[];
-  prompts: ExamPromptCard[];
-};
-
 export type InteractiveExam = {
   id: string;
   subjectId: SubjectId;

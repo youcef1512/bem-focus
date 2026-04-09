@@ -39,6 +39,12 @@ test("hosted pdf iframe is present on exam page", async ({ page }) => {
   await expect(page.locator('iframe[title="paper-math-2025"]')).toBeVisible();
 });
 
+test("exam page uses teaching-first coach content instead of OCR output", async ({ page }) => {
+  await page.goto("/past-exams/french/2025");
+  await expect(page.getByRole("heading", { name: /كيف تخدمي هذه الورقة فعلاً/ })).toBeVisible();
+  await expect(page.getByText(/إعادة بناء الامتحان من الصفحات الأصلية/)).toHaveCount(0);
+});
+
 test("history recall lab can generate a new set", async ({ page }) => {
   await page.goto("/history-timeline");
   const firstItem = await page.getByTestId("reorder-item").first().innerText();

@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { buildInteractiveExam, examDossierFor, examSources, lessons, studyPlan, subjects } from "../src/content";
+import {
+  buildInteractiveExam,
+  examSources,
+  lessons,
+  studyPlan,
+  subjects,
+  summarySheets,
+} from "../src/content";
 import { buildMathExamSections } from "../src/features/math/remix";
 import { buildHistoryStoryRecallSet } from "../src/features/practice/generators";
 import { isQuestionCorrect } from "../src/features/practice/evaluation";
@@ -42,21 +49,17 @@ describe("content depth", () => {
     }
   });
 
-  it("classifies french and english dossier prompts with concrete skill tags", () => {
-    const french = examDossierFor("french", 2025);
-    const english = examDossierFor("english", 2025);
-    expect(french).toBeDefined();
-    expect(english).toBeDefined();
+  it("keeps full programme depth and exam moves for every subject", () => {
+    for (const subject of subjects) {
+      const subjectSummaries = summarySheets.filter((summary) => summary.subjectId === subject.id);
+      const programmeDepth =
+        subjectSummaries.flatMap((summary) => summary.programSections ?? []).length ||
+        subject.roadmap.length;
+      const examMoveCount = subjectSummaries.flatMap((summary) => summary.examMoves).length;
 
-    const frenchTags = new Set(french?.prompts.map((prompt) => prompt.skillTag));
-    const englishTags = new Set(english?.prompts.map((prompt) => prompt.skillTag));
-
-    expect(frenchTags.has("Compétence de français")).toBe(false);
-    expect(englishTags.has("English skill")).toBe(false);
-    expect(frenchTags.has("Compréhension")).toBe(true);
-    expect(frenchTags.has("Langue et grammaire") || frenchTags.has("Lexique")).toBe(true);
-    expect(englishTags.has("Reading")).toBe(true);
-    expect(englishTags.has("Grammar") || englishTags.has("Vocabulary")).toBe(true);
+      expect(programmeDepth).toBeGreaterThanOrEqual(2);
+      expect(examMoveCount).toBeGreaterThanOrEqual(2);
+    }
   });
 });
 

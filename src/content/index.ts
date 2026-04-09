@@ -1,15 +1,13 @@
 import { historyTimeline } from "./historyTimeline";
-import { examDossiers } from "./examDossiers";
 import { lessons } from "./lessons";
 import { researchResources } from "./resources";
 import { summarySheets } from "./summaries";
 import { subjects } from "./subjects";
 import { studyPlan } from "./studyPlan";
 
-export { lessons, summarySheets, subjects, studyPlan, historyTimeline, researchResources, examDossiers };
+export { lessons, summarySheets, subjects, studyPlan, historyTimeline, researchResources };
 export * from "./schema";
 export * from "./exams";
-export * from "./examDossiers";
 
 export const lessonById = Object.fromEntries(
   lessons.map((lesson) => [lesson.id, lesson]),
